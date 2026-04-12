@@ -390,121 +390,6 @@
   .cart-row.total strong { font-size: 1rem; color: var(--white); }
   .btn-checkout { width: 100%; justify-content: center; font-size: 0.9rem; padding: 16px; margin-top: 0.25rem; }
 
-  /* ══════════════════════════════════════════
-     CHECKOUT PLEIN ÉCRAN
-  ══════════════════════════════════════════ */
-  .checkout-screen {
-    position: fixed; inset: 0; z-index: 600;
-    background: var(--void); overflow-y: auto;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.3s var(--ease-out);
-  }
-  .checkout-screen.open { opacity: 1; pointer-events: all; }
-
-  .checkout-wrap { max-width: 1100px; margin: 0 auto; padding: 1.5rem 2rem 4rem; min-height: 100vh; display: flex; flex-direction: column; }
-
-  .checkout-hd { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1.5rem; border-bottom: 1px solid var(--rim); margin-bottom: 2rem; flex-shrink: 0; }
-  .checkout-back { background: none; border: none; color: var(--subtle); font-family: var(--font-body); font-size: 0.82rem; letter-spacing: 0.05em; cursor: pointer; transition: color 0.2s; }
-  .checkout-back:hover { color: var(--cyan); }
-
-  .checkout-cols { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: start; flex: 1; }
-
-  .checkout-forms { display: flex; flex-direction: column; gap: 2rem; }
-
-  .checkout-step {
-    background: rgba(19,22,31,0.8); border: 1px solid rgba(77,220,255,0.1);
-    border-radius: 12px; padding: 2rem;
-    backdrop-filter: blur(12px);
-  }
-  .step-title { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.08em; color: var(--white); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
-  .step-num { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--cyan); color: var(--void); font-size: 0.75rem; font-weight: 700; border-radius: 50%; flex-shrink: 0; }
-
-  .sec-badges { display: flex; gap: 6px; margin-left: auto; }
-  .sec-badge { background: rgba(255,255,255,0.05); border: 1px solid var(--rim); color: var(--silver); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.05em; padding: 3px 8px; border-radius: 3px; }
-
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .f-full { grid-column: 1 / -1; }
-  .f-group { display: flex; flex-direction: column; gap: 6px; }
-  .f-group label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--subtle); }
-  .f-group input, .f-group select { background: var(--surface); border: 1px solid var(--rim); border-radius: 4px; color: var(--bright); font-family: var(--font-body); font-size: 0.9rem; padding: 11px 14px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
-  .f-group input::placeholder { color: var(--muted); }
-  .f-group input:focus, .f-group select:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(77,220,255,0.1); }
-  .f-group input.error { border-color: #ff4d4d; box-shadow: 0 0 0 3px rgba(255,77,77,0.12); }
-  .f-group select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7394' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 16px; padding-right: 36px; }
-  option { background: var(--panel); }
-
-  /* Carte bancaire preview */
-  .card-preview {
-    background: linear-gradient(135deg, #1a2040 0%, #0d1530 100%);
-    border: 1px solid rgba(77,220,255,0.2); border-radius: 12px;
-    padding: 1.5rem 1.75rem; margin-bottom: 1.5rem;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
-    position: relative; overflow: hidden;
-  }
-  .card-preview::before { content: ''; position: absolute; top: -30px; left: -30px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(77,220,255,0.06), transparent 70%); pointer-events: none; }
-  .card-chip { width: 36px; height: 28px; background: linear-gradient(135deg, var(--gold), #c8951a); border-radius: 5px; margin-bottom: 1.5rem; position: relative; }
-  .card-chip::after { content: ''; position: absolute; inset: 6px 0; border-top: 1px solid rgba(0,0,0,0.3); border-bottom: 1px solid rgba(0,0,0,0.3); }
-  .card-num-prev { font-family: 'Courier New', monospace; font-size: 1.1rem; letter-spacing: 0.25em; color: var(--bright); margin-bottom: 1rem; }
-  .card-meta-prev { display: flex; justify-content: space-between; }
-  .card-meta-prev span { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--silver); }
-
-  .btn-pay { width: 100%; justify-content: center; padding: 18px; font-size: 1rem; letter-spacing: 0.12em; box-shadow: 0 4px 20px rgba(77,220,255,0.3); }
-  .btn-pay:hover { box-shadow: 0 6px 28px rgba(77,220,255,0.45); }
-  .checkout-notice { text-align: center; font-size: 0.72rem; font-weight: 300; color: var(--muted); margin-top: 0.75rem; }
-
-  /* Récapitulatif commande */
-  .checkout-recap { position: sticky; top: 1.5rem; background: rgba(19,22,31,0.8); border: 1px solid rgba(77,220,255,0.1); border-radius: 12px; padding: 2rem; }
-  .recap-title { font-family: var(--font-display); font-size: 1.2rem; letter-spacing: 0.08em; color: var(--white); margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rim); }
-
-  .recap-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
-  .recap-thumb { width: 44px; height: 44px; border-radius: 4px; overflow: hidden; background: var(--surface); flex-shrink: 0; }
-  .recap-thumb svg { width: 100%; height: 100%; }
-  .recap-info { flex: 1; }
-  .recap-name { font-size: 0.82rem; font-weight: 500; color: var(--bright); }
-  .recap-qty { font-size: 0.72rem; color: var(--muted); }
-  .recap-price { font-size: 0.9rem; font-weight: 500; color: var(--white); white-space: nowrap; }
-
-  .recap-totals { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
-  .recap-row { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--subtle); }
-  .recap-row.grand { padding-top: 0.75rem; border-top: 1px solid var(--rim); }
-  .recap-row.grand strong { font-size: 1rem; color: var(--white); }
-
-  .recap-mif { margin-top: 1.25rem; text-align: center; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--subtle); padding: 8px; border: 1px dashed var(--rim); border-radius: 4px; }
-
-  /* ══════════════════════════════════════════
-     SUCCÈS PAIEMENT
-  ══════════════════════════════════════════ */
-  .success-overlay {
-    position: fixed; inset: 0; z-index: 700;
-    background: rgba(8,9,13,0.93);
-    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    display: flex; align-items: center; justify-content: center; padding: 2rem;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.3s var(--ease-out);
-  }
-  .success-overlay.open { opacity: 1; pointer-events: all; }
-
-  .success-box {
-    background: rgba(19,22,31,0.9); border: 1px solid rgba(77,220,255,0.15);
-    box-shadow: 0 24px 64px rgba(0,0,0,0.7);
-    border-radius: 16px; padding: 3rem 2.5rem;
-    max-width: 480px; width: 100%; text-align: center;
-    display: flex; flex-direction: column; align-items: center; gap: 1rem;
-    transform: scale(0.9);
-    transition: transform 0.4s 0.1s var(--ease-out);
-  }
-  .success-overlay.open .success-box { transform: scale(1); }
-
-  .success-checkmark { width: 80px; height: 80px; margin-bottom: 0.5rem; }
-  .success-circle { stroke-dasharray: 240; stroke-dashoffset: 240; }
-  .success-overlay.open .success-circle { animation: drawCircle 0.7s 0.2s var(--ease-out) forwards; }
-  .success-check { stroke-dasharray: 60; stroke-dashoffset: 60; }
-  .success-overlay.open .success-check { animation: drawCheck 0.5s 0.7s var(--ease-out) forwards; }
-
-  .success-title { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.06em; color: var(--white); }
-  .success-sub { font-size: 0.9rem; font-weight: 300; color: var(--subtle); line-height: 1.7; }
-  .success-order { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); padding: 8px 16px; border: 1px dashed var(--rim); border-radius: 4px; }
-
   /* ── TOAST ── */
   .toast {
     position: fixed; bottom: 2rem; right: 2rem;
@@ -524,8 +409,6 @@
   @keyframes fadeInDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:translateY(0); } }
   @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
   @keyframes orbit { from { transform:translateX(-50%) rotate(0deg) translateX(180px) rotate(0deg); } to { transform:translateX(-50%) rotate(360deg) translateX(180px) rotate(-360deg); } }
-  @keyframes drawCircle { to { stroke-dashoffset: 0; } }
-  @keyframes drawCheck   { to { stroke-dashoffset: 0; } }
 
   /* ── REVEAL ON SCROLL ── */
   .reveal { opacity:0; transform:translateY(30px); transition:opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
@@ -550,8 +433,6 @@
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
     .modal-box { grid-template-columns: 1fr; max-height: 95vh; }
     .modal-img-wrap { border-radius: 12px 12px 0 0; max-height: 240px; }
-    .checkout-cols { grid-template-columns: 1fr; }
-    .checkout-recap { position: static; }
   }
   @media (max-width: 600px) {
     header { padding: 0 1.25rem; }
@@ -564,9 +445,6 @@
     .mif-ring { width: 260px; height: 260px; }
     .modal-actions { flex-direction: column; }
     .btn-modal-add { width: 100%; }
-    .form-grid { grid-template-columns: 1fr; }
-    .f-full { grid-column: auto; }
-    .checkout-wrap { padding: 1rem; }
     .toast { left: 1rem; right: 1rem; bottom: 1rem; justify-content: center; }
   }
 </style>
@@ -575,7 +453,6 @@
 
 <canvas id="stars-canvas"></canvas>
 
-<!-- ═══════ HEADER ═══════ -->
 <header id="main-header">
   <a href="#" class="logo" aria-label="Aerodeco accueil">
     <svg class="logo-mark" viewBox="0 0 34 34" fill="none">
@@ -592,17 +469,16 @@
     <a href="#contact">Contact</a>
   </nav>
   <div class="header-actions">
-    <button class="cart-btn" id="cart-toggle" aria-label="Panier">
+    <button class="cart-btn" id="cart-toggle-btn" aria-label="Panier">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
       </svg>
-      <span class="cart-count" id="cart-count">0</span>
+      <span class="cart-count" id="cart-badge">0</span>
     </button>
     <button class="hamburger" id="hamburger-btn" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
-<!-- Mobile nav -->
 <nav class="mobile-nav" id="mobile-nav">
   <button class="mobile-nav-close" id="mobile-nav-close">✕</button>
   <a href="#accueil" class="mobile-link">Accueil</a>
@@ -611,7 +487,6 @@
   <a href="#contact" class="mobile-link">Contact</a>
 </nav>
 
-<!-- ═══════ HERO ═══════ -->
 <section class="hero" id="accueil">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
@@ -639,7 +514,6 @@
   </div>
 </section>
 
-<!-- ═══════ SPECS STRIP ═══════ -->
 <div class="specs-strip">
   <div class="specs-marquee">
     <span class="spec-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Impression FDM Haute Précision</span>
@@ -657,7 +531,6 @@
   </div>
 </div>
 
-<!-- ═══════ SAVOIR-FAIRE ═══════ -->
 <section class="savoir-faire" id="savoir-faire">
   <div class="section-wrapper">
     <div class="section-header reveal">
@@ -689,7 +562,6 @@
   </div>
 </section>
 
-<!-- ═══════ BOUTIQUE ═══════ -->
 <section class="boutique" id="boutique">
   <div class="section-wrapper">
     <div class="section-header reveal">
@@ -705,11 +577,8 @@
     </div>
     <div class="products-grid" id="products-grid">
 
-      <!-- ═══ PRODUIT 1 — Ariane Classic ═══
-           Pour modifier : changez data-name, data-price, data-desc, data-full-desc, data-size, data-material, data-finish
-           Pour l'image   : remplacez le bloc <svg>…</svg> par <img src="votre-image.jpg" alt="…" /> -->
       <article class="product-card reveal" data-category="classique"
-        data-name="Ariane Classic" data-price="89" data-ref="REF · ADC-001"
+        data-id="ADC-001" data-name="Ariane Classic" data-price="89" data-ref="REF · ADC-001"
         data-desc="Inspiré du légendaire lanceur européen. Version 30cm, finition nacre blanc stellaire."
         data-full-desc="Inspiré du légendaire lanceur Ariane 5, ce modèle est un hommage à l'excellence spatiale européenne.|Imprimé en PLA+ haute densité à 0.1mm de résolution, chaque détail est reproduit fidèlement.|La finition nacre blanc stellaire lui confère une élégance intemporelle, parfaite pour un bureau ou une bibliothèque."
         data-size="30 cm" data-material="PLA+ Premium" data-finish="Nacre blanc stellaire">
@@ -745,9 +614,8 @@
         </div>
       </article>
 
-      <!-- ═══ PRODUIT 2 — Saturn V Prestige ═══ -->
       <article class="product-card reveal reveal-delay-1" data-category="premium"
-        data-name="Saturn V Prestige" data-price="149" data-ref="REF · ADC-002"
+        data-id="ADC-002" data-name="Saturn V Prestige" data-price="149" data-ref="REF · ADC-002"
         data-desc="La plus grande fusée jamais construite, reproduite en 45cm. Finition bicolore argent &amp; orange."
         data-full-desc="Le Saturn V est la fusée la plus puissante jamais construite par l'humanité.|Ce modèle en 45cm rend hommage à ce géant de l'espace avec une précision obsessionnelle — chaque étage est fidèle à l'original.|La finition bicolore argent métallique et orange brûlé lui confère un caractère saisissant. Idéal comme pièce maîtresse."
         data-size="45 cm" data-material="PLA+ Premium" data-finish="Bicolore argent &amp; orange">
@@ -787,9 +655,8 @@
         </div>
       </article>
 
-      <!-- ═══ PRODUIT 3 — Falcon Gold Edition ═══ -->
       <article class="product-card reveal reveal-delay-2" data-category="edition"
-        data-name="Falcon Gold Edition" data-price="229" data-ref="REF · ADC-003 · N°47/100"
+        data-id="ADC-003" data-name="Falcon Gold Edition" data-price="229" data-ref="REF · ADC-003 · N°47/100"
         data-desc="Édition numérotée et signée. Finition or satiné exclusif, 40cm. Socle acajou inclus."
         data-full-desc="Cette édition limitée à 100 exemplaires numérotés est la pièce la plus exclusive de notre collection.|Sa silhouette élancée est mise en valeur par une finition or satiné réalisée à la main en plusieurs couches.|Livrée avec un socle en acajou massif et un certificat d'authenticité signé par notre équipe."
         data-size="40 cm" data-material="PLA+ Premium" data-finish="Or satiné + socle acajou">
@@ -827,9 +694,8 @@
         </div>
       </article>
 
-      <!-- ═══ PRODUIT 4 — Cosmos Bleu ═══ -->
       <article class="product-card reveal" data-category="classique"
-        data-name="Cosmos Bleu" data-price="79" data-ref="REF · ADC-004"
+        data-id="ADC-004" data-name="Cosmos Bleu" data-price="79" data-ref="REF · ADC-004"
         data-desc="Design rétro-futuriste années 60. Finition bleu cyan nacré, 25cm. Idéal pour bureau."
         data-full-desc="Plongez dans l'ère spatiale des années 60 avec ce modèle rétro-futuriste aux lignes pures et épurées.|La finition bleu cyan nacré est obtenue après 3 couches de peinture appliquées à la main, suivies d'un vernis satiné haute résistance.|Sa taille compacte (25cm) en fait le compagnon idéal d'un bureau ou d'une étagère."
         data-size="25 cm" data-material="PLA+ Premium" data-finish="Bleu cyan nacré">
@@ -862,9 +728,8 @@
         </div>
       </article>
 
-      <!-- ═══ PRODUIT 5 — Lourd Titan III ═══ -->
       <article class="product-card reveal reveal-delay-1" data-category="premium"
-        data-name="Lourd Titan III" data-price="189" data-ref="REF · ADC-005"
+        data-id="ADC-005" data-name="Lourd Titan III" data-price="189" data-ref="REF · ADC-005"
         data-desc="Architecture boosters latéraux, 50cm. Finition gris anthracite &amp; accents braise. Pièce maîtresse."
         data-full-desc="Le Titan III est le modèle le plus imposant de notre collection à 50cm. Son architecture à boosters latéraux en fait une sculpture industrielle à part entière.|La finition gris anthracite mat est contrebalancée par des accents orange braise sur les empennages et les joints de séparation des étages.|Cette pièce maîtresse est taillée pour dominer un espace de réception. Livrée avec un socle en aluminium brossé."
         data-size="50 cm" data-material="PLA+ Premium" data-finish="Gris anthracite &amp; orange braise">
@@ -906,9 +771,8 @@
         </div>
       </article>
 
-      <!-- ═══ PRODUIT 6 — Stealth Noir Mat ═══ -->
       <article class="product-card reveal reveal-delay-2" data-category="edition"
-        data-name="Stealth Noir Mat" data-price="259" data-ref="REF · ADC-006 · N°12/30"
+        data-id="ADC-006" data-name="Stealth Noir Mat" data-price="259" data-ref="REF · ADC-006 · N°12/30"
         data-desc="Édition collector, finition carbone noir mat. 38cm. Silhouette épurée, lignes cyan électriques."
         data-full-desc="Le Stealth Noir Mat est notre pièce la plus iconique. Sa silhouette tranchante aux ailettes delta-wing est habillée d'une finition carbone noir mat ultra-premium.|Les lignes cyan électriques sont peintes au pinceau fin par notre artisan, donnant à chaque pièce un caractère unique et légèrement différent.|Édition limitée à seulement 30 exemplaires, livrée dans un écrin noir satiné avec certificat d'authenticité gravé."
         data-size="38 cm" data-material="PLA+ Premium" data-finish="Carbone noir mat + cyan">
@@ -948,11 +812,9 @@
         </div>
       </article>
 
-    </div><!-- /products-grid -->
-  </div>
+    </div></div>
 </section>
 
-<!-- ═══════ MADE IN FRANCE ═══════ -->
 <section class="mif-section">
   <div class="section-wrapper">
     <div class="mif-inner">
@@ -981,7 +843,6 @@
   </div>
 </section>
 
-<!-- ═══════ CTA BAND ═══════ -->
 <section class="cta-band">
   <div class="section-wrapper">
     <h2 class="cta-band-title reveal">PRÊT AU DÉCOLLAGE ?</h2>
@@ -992,7 +853,6 @@
   </div>
 </section>
 
-<!-- ═══════ FOOTER ═══════ -->
 <footer id="contact">
   <div class="section-wrapper">
     <div class="footer-grid">
@@ -1047,10 +907,6 @@
   </div>
 </footer>
 
-
-<!-- ═══════════════════════════════════════════════════════
-     MODALE PRODUIT — overlay + boîte (injectée par JS)
-═══════════════════════════════════════════════════════ -->
 <div class="modal-overlay" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-name">
   <div class="modal-box" id="modal-box">
     <button class="modal-close" id="modal-close" aria-label="Fermer">✕</button>
@@ -1073,17 +929,14 @@
   </div>
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════
-     SIDEBAR PANIER
-═══════════════════════════════════════════════════════ -->
-<div class="cart-overlay-bg" id="cart-bg"></div>
+<div class="cart-overlay-bg" id="cart-overlay"></div>
 <aside class="cart-sidebar" id="cart-sidebar" role="complementary" aria-label="Votre panier">
   <div class="cart-sidebar-hd">
     <h2 class="cart-sidebar-title">Mon Panier</h2>
-    <button class="cart-close" id="cart-close" aria-label="Fermer le panier">✕</button>
+    <button class="cart-close" id="cart-close-btn" aria-label="Fermer le panier">✕</button>
   </div>
   <div class="cart-body" id="cart-body">
+    <div class="cart-items-list" id="cart-items-list"></div>
     <div class="cart-empty-state" id="cart-empty">
       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
         <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
@@ -1092,699 +945,20 @@
       <small>Explorez notre flotte pour ajouter vos fusées préférées.</small>
     </div>
   </div>
-  <div class="cart-sidebar-ft" id="cart-ft" style="display:none">
-    <div class="cart-row"><span>Sous-total</span><span id="s-subtotal">0 €</span></div>
-    <div class="cart-row"><span>Livraison</span><span id="s-shipping">Calculée à la caisse</span></div>
-    <div class="cart-row total"><strong>Total</strong><strong id="s-total">0 €</strong></div>
-    <button class="btn-primary btn-checkout" id="btn-checkout">🚀 Passer à la caisse</button>
+  <div class="cart-sidebar-ft" id="cart-footer" hidden>
+    <div class="cart-row"><span>Sous-total</span><span id="cart-subtotal">0 €</span></div>
+    <div class="cart-row"><span>Livraison</span><span id="cart-shipping-label">Calculée à la caisse</span></div>
+    <div class="cart-row total"><strong>Total</strong><strong id="cart-total">0 €</strong></div>
+    <button class="btn-primary btn-checkout" id="checkout-btn">🚀 Passer à la caisse</button>
   </div>
 </aside>
 
-
-<!-- ═══════════════════════════════════════════════════════
-     CHECKOUT PLEIN ÉCRAN
-═══════════════════════════════════════════════════════ -->
-<div class="checkout-screen" id="checkout-screen">
-  <div class="checkout-wrap">
-    <div class="checkout-hd">
-      <span class="logo-text" style="font-size:1.4rem">AERO<span style="color:var(--cyan)">DECO</span></span>
-      <button class="checkout-back" id="checkout-back">← Retour au panier</button>
-    </div>
-    <div class="checkout-cols">
-
-      <!-- Formulaires -->
-      <div class="checkout-forms">
-
-        <!-- Étape 1 : Livraison -->
-        <div class="checkout-step">
-          <h3 class="step-title"><span class="step-num">01</span> Adresse de livraison</h3>
-          <div class="form-grid">
-            <div class="f-group"><label for="f-prenom">Prénom</label><input type="text" id="f-prenom" placeholder="Jean" autocomplete="given-name"/></div>
-            <div class="f-group"><label for="f-nom">Nom</label><input type="text" id="f-nom" placeholder="Dupont" autocomplete="family-name"/></div>
-            <div class="f-group f-full"><label for="f-email">E-mail</label><input type="email" id="f-email" placeholder="jean.dupont@email.fr" autocomplete="email"/></div>
-            <div class="f-group f-full"><label for="f-adresse">Adresse</label><input type="text" id="f-adresse" placeholder="12 rue de la Galaxie" autocomplete="street-address"/></div>
-            <div class="f-group"><label for="f-cp">Code postal</label><input type="text" id="f-cp" placeholder="75001" autocomplete="postal-code"/></div>
-            <div class="f-group"><label for="f-ville">Ville</label><input type="text" id="f-ville" placeholder="Paris" autocomplete="address-level2"/></div>
-            <div class="f-group f-full">
-              <label for="f-pays">Pays</label>
-              <select id="f-pays" autocomplete="country">
-                <option value="FR" selected>France</option>
-                <option value="BE">Belgique</option>
-                <option value="CH">Suisse</option>
-                <option value="LU">Luxembourg</option>
-                <option value="DE">Allemagne</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- Étape 2 : Paiement -->
-        <div class="checkout-step">
-          <h3 class="step-title">
-            <span class="step-num">02</span> Informations de paiement
-            <span class="sec-badges">
-              <span class="sec-badge">🔒 SSL</span>
-              <span class="sec-badge">VISA</span>
-              <span class="sec-badge">MC</span>
-              <span class="sec-badge">CB</span>
-            </span>
-          </h3>
-
-          <!-- Prévisualisation carte -->
-          <div class="card-preview" aria-hidden="true">
-            <div class="card-chip"></div>
-            <div class="card-num-prev" id="card-num-prev">•••• •••• •••• ••••</div>
-            <div class="card-meta-prev">
-              <span id="card-holder-prev">VOTRE NOM</span>
-              <span id="card-exp-prev">MM/AA</span>
-            </div>
-          </div>
-
-          <div class="form-grid">
-            <div class="f-group f-full">
-              <label for="f-card-name">Titulaire de la carte</label>
-              <input type="text" id="f-card-name" placeholder="JEAN DUPONT" autocomplete="cc-name" maxlength="26"/>
-            </div>
-            <div class="f-group f-full">
-              <label for="f-card-num">Numéro de carte</label>
-              <input type="text" id="f-card-num" placeholder="1234 5678 9012 3456" autocomplete="cc-number" maxlength="19" inputmode="numeric"/>
-            </div>
-            <div class="f-group">
-              <label for="f-card-exp">Date d'expiration</label>
-              <input type="text" id="f-card-exp" placeholder="MM/AA" autocomplete="cc-exp" maxlength="5" inputmode="numeric"/>
-            </div>
-            <div class="f-group">
-              <label for="f-card-cvc">Code CVC</label>
-              <input type="text" id="f-card-cvc" placeholder="•••" autocomplete="cc-csc" maxlength="3" inputmode="numeric"/>
-            </div>
-          </div>
-        </div>
-
-        <button class="btn-primary btn-pay" id="btn-pay">
-          🔒 Payer ma commande — <span id="pay-total">0 €</span>
-        </button>
-        <p class="checkout-notice">Paiement 100% sécurisé · Aucune donnée bancaire stockée · Remboursement 30 jours</p>
-      </div>
-
-      <!-- Récapitulatif -->
-      <div class="checkout-recap">
-        <div class="recap-title">Récapitulatif</div>
-        <div id="recap-items"></div>
-        <div class="recap-totals">
-          <div class="recap-row"><span>Sous-total</span><span id="r-subtotal">0 €</span></div>
-          <div class="recap-row"><span>Livraison</span><span id="r-shipping">Offerte</span></div>
-          <div class="recap-row grand"><strong>Total TTC</strong><strong id="r-total">0 €</strong></div>
-        </div>
-        <div class="recap-mif">🇫🇷 Expédié depuis la France</div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
-<!-- ═══════════════════════════════════════════════════════
-     SUCCÈS PAIEMENT
-═══════════════════════════════════════════════════════ -->
-<div class="success-overlay" id="success-overlay">
-  <div class="success-box">
-    <svg class="success-checkmark" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-      <circle cx="40" cy="40" r="38" stroke="#4ddcff" stroke-width="2" class="success-circle"/>
-      <path d="M22 40l13 13 23-26" stroke="#4ddcff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="success-check"/>
-    </svg>
-    <h2 class="success-title">Décollage confirmé ! 🚀</h2>
-    <p class="success-sub">Votre commande a été reçue avec succès.<br>Un e-mail de confirmation a été envoyé à votre adresse.</p>
-    <p class="success-order" id="success-order"></p>
-    <button class="btn-primary" id="btn-success-back">Retour à la boutique</button>
-  </div>
-</div>
-
-
-<!-- ═══════════════════════════════════════════════════════
-     TOAST NOTIFICATION
-═══════════════════════════════════════════════════════ -->
 <div class="toast" id="toast" role="alert" aria-live="assertive">
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-  <span id="toast-msg">Action effectuée</span>
+  <span id="toast-message">Action effectuée</span>
 </div>
 
+<script src="script.js"></script>
 
-<script>
-/* ═══════════════════════════════════════════════════════════
-   AERODECO — script.js intégré
-   Modale · Panier · Checkout · Succès · Toast
-═══════════════════════════════════════════════════════════ */
-
-/* ── ÉTAT GLOBAL ── */
-let panier = [];          // [{id,name,price,qty,svgHTML}]
-let produitActif = null;  // données du produit ouvert dans la modale
-let modalQte = 1;         // quantité sélectionnée dans la modale
-let toastTimer = null;
-
-/* ── RÉFÉRENCES DOM ── */
-const $ = id => document.getElementById(id);
-
-// Header
-const cartToggle    = $('cart-toggle');
-const cartCountEl   = $('cart-count');
-
-// Modale
-const modal         = $('product-modal');
-const modalClose    = $('modal-close');
-const modalImg      = $('modal-img');
-const modalRef      = $('modal-ref');
-const modalName     = $('modal-name');
-const modalPrice    = $('modal-price');
-const modalDesc     = $('modal-desc');
-const modalSpecs    = $('modal-specs');
-const qtyMinus      = $('qty-minus');
-const qtyPlus       = $('qty-plus');
-const qtyVal        = $('qty-val');
-const modalAddBtn   = $('modal-add-btn');
-
-// Sidebar
-const cartBg        = $('cart-bg');
-const cartSidebar   = $('cart-sidebar');
-const cartClose     = $('cart-close');
-const cartBody      = $('cart-body');
-const cartEmpty     = $('cart-empty');
-const cartFt        = $('cart-ft');
-const sSubtotal     = $('s-subtotal');
-const sShipping     = $('s-shipping');
-const sTotal        = $('s-total');
-const btnCheckout   = $('btn-checkout');
-
-// Checkout
-const checkoutScreen= $('checkout-screen');
-const checkoutBack  = $('checkout-back');
-const recapItems    = $('recap-items');
-const rSubtotal     = $('r-subtotal');
-const rShipping     = $('r-shipping');
-const rTotal        = $('r-total');
-const payTotal      = $('pay-total');
-const btnPay        = $('btn-pay');
-const cardNumInput  = $('f-card-num');
-const cardNumPrev   = $('card-num-prev');
-const cardHolderPrev= $('card-holder-prev');
-const cardExpPrev   = $('card-exp-prev');
-
-// Succès
-const successOverlay= $('success-overlay');
-const successOrder  = $('success-order');
-const btnSuccessBack= $('btn-success-back');
-
-// Toast
-const toastEl       = $('toast');
-const toastMsg      = $('toast-msg');
-
-/* ─────────────────────────────────────────
-   UTILITAIRES
-───────────────────────────────────────── */
-const fmt = n => new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',minimumFractionDigits:0}).format(n);
-
-function toast(msg, dur=3000) {
-  toastMsg.textContent = msg;
-  toastEl.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toastEl.classList.remove('show'), dur);
-}
-
-function lockScroll(lock) {
-  document.body.classList.toggle('no-scroll', lock);
-}
-
-function genOrderId() {
-  const c = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  return 'ADC-' + Array.from({length:8}, () => c[Math.floor(Math.random()*c.length)]).join('');
-}
-
-/* ─────────────────────────────────────────
-   MODALE PRODUIT
-───────────────────────────────────────── */
-function ouvrirModale(card) {
-  produitActif = {
-    id      : card.dataset.ref || card.querySelector('.product-ref').textContent,
-    name    : card.dataset.name,
-    price   : parseFloat(card.dataset.price),
-    ref     : card.dataset.ref,
-    fullDesc: card.dataset.fullDesc,
-    size    : card.dataset.size,
-    material: card.dataset.material,
-    finish  : card.dataset.finish,
-    svgHTML : card.querySelector('.product-img-wrap').innerHTML,
-  };
-
-  modalQte = 1;
-  qtyVal.textContent = 1;
-
-  // Injection du contenu
-  modalImg.innerHTML = produitActif.svgHTML;
-  // Supprimer le badge de l'image agrandie
-  modalImg.querySelector('.product-badge')?.remove();
-
-  modalRef.textContent  = produitActif.ref;
-  modalName.textContent = produitActif.name;
-  modalPrice.textContent = fmt(produitActif.price);
-
-  // Description : phrases séparées par "|"
-  modalDesc.innerHTML = produitActif.fullDesc
-    .split('|')
-    .map(p => `<p>${p.trim()}</p>`)
-    .join('');
-
-  // Spécifications
-  modalSpecs.innerHTML = `
-    <div><span class="spec-label">Taille</span><span class="spec-value">${produitActif.size}</span></div>
-    <div><span class="spec-label">Matériau</span><span class="spec-value">${produitActif.material}</span></div>
-    <div><span class="spec-label">Finition</span><span class="spec-value">${produitActif.finish}</span></div>
-    <div><span class="spec-label">Origine</span><span class="spec-value">🇫🇷 France</span></div>
-  `;
-
-  modal.classList.add('open');
-  lockScroll(true);
-  modalClose.focus();
-}
-
-function fermerModale() {
-  modal.classList.remove('open');
-  lockScroll(false);
-  produitActif = null;
-}
-
-// Clics sur les cartes produit (délégation)
-document.getElementById('products-grid').addEventListener('click', e => {
-  const card = e.target.closest('.product-card');
-  if (card) ouvrirModale(card);
-});
-
-modalClose.addEventListener('click', fermerModale);
-modal.addEventListener('click', e => { if (e.target === modal) fermerModale(); });
-
-// Sélecteur de quantité
-qtyMinus.addEventListener('click', () => { if (modalQte > 1) qtyVal.textContent = --modalQte; });
-qtyPlus.addEventListener('click',  () => { if (modalQte < 10) qtyVal.textContent = ++modalQte; });
-
-// Ajouter au panier depuis la modale
-modalAddBtn.addEventListener('click', () => {
-  if (!produitActif) return;
-  ajouterAuPanier(produitActif, modalQte);
-  fermerModale();
-  setTimeout(ouvrirSidebar, 350);
-});
-
-/* ─────────────────────────────────────────
-   PANIER — LOGIQUE
-───────────────────────────────────────── */
-function calculerSousTotal() {
-  return panier.reduce((acc, i) => acc + i.price * i.qty, 0);
-}
-
-function calculerLivraison(st) {
-  return st >= 150 ? 0 : 9.90;
-}
-
-function ajouterAuPanier(prod, qte) {
-  const ex = panier.find(i => i.id === prod.id);
-  if (ex) { ex.qty += qte; }
-  else     { panier.push({ id:prod.id, name:prod.name, price:prod.price, qty:qte, svgHTML:prod.svgHTML }); }
-  mettreAJourBadge();
-  toast(`✓ "${prod.name}" ajouté au panier (×${qte})`);
-}
-
-function retirerDuPanier(id) {
-  panier = panier.filter(i => i.id !== id);
-  mettreAJourBadge();
-  rendrePanier();
-}
-
-function changerQte(id, delta) {
-  const item = panier.find(i => i.id === id);
-  if (!item) return;
-  item.qty += delta;
-  if (item.qty <= 0) { retirerDuPanier(id); return; }
-  mettreAJourBadge();
-  rendrePanier();
-}
-
-function mettreAJourBadge() {
-  const n = panier.reduce((a, i) => a + i.qty, 0);
-  cartCountEl.textContent = n;
-  cartCountEl.style.transform = 'scale(1.5)';
-  setTimeout(() => cartCountEl.style.transform = '', 220);
-}
-
-/* ─────────────────────────────────────────
-   PANIER — RENDU SIDEBAR
-───────────────────────────────────────── */
-function rendrePanier() {
-  // Supprimer les anciens items
-  cartBody.querySelectorAll('.cart-item').forEach(el => el.remove());
-
-  if (panier.length === 0) {
-    cartEmpty.style.display  = 'flex';
-    cartFt.style.display     = 'none';
-    return;
-  }
-
-  cartEmpty.style.display = 'none';
-  cartFt.style.display    = 'flex';
-
-  panier.forEach(item => {
-    const div = document.createElement('div');
-    div.className = 'cart-item';
-    // On retire le badge du svg pour la miniature
-    const svgClean = item.svgHTML.replace(/<span[^>]*product-badge[^>]*>.*?<\/span>/gi, '');
-    div.innerHTML = `
-      <div class="cart-thumb">${svgClean}</div>
-      <div class="cart-item-info">
-        <span class="cart-item-name">${item.name}</span>
-        <span class="cart-item-unit">${fmt(item.price)} / unité</span>
-        <div class="cart-item-controls">
-          <button class="cart-ctrl" data-action="moins" data-id="${item.id}">−</button>
-          <span class="cart-qty-display">${item.qty}</span>
-          <button class="cart-ctrl" data-action="plus"  data-id="${item.id}">+</button>
-        </div>
-      </div>
-      <div class="cart-item-right">
-        <button class="cart-remove" data-id="${item.id}" aria-label="Retirer">✕</button>
-        <span class="cart-item-subtotal">${fmt(item.price * item.qty)}</span>
-      </div>
-    `;
-    cartBody.appendChild(div);
-  });
-
-  // Totaux
-  const st  = calculerSousTotal();
-  const liv = calculerLivraison(st);
-  sSubtotal.textContent = fmt(st);
-  sShipping.textContent = liv === 0 ? '🎁 Offerte' : fmt(liv);
-  sTotal.textContent    = fmt(st + liv);
-}
-
-// Délégation clics dans le corps du panier
-cartBody.addEventListener('click', e => {
-  const id = e.target.dataset.id;
-  if (e.target.classList.contains('cart-ctrl') && id) {
-    changerQte(id, e.target.dataset.action === 'plus' ? 1 : -1);
-  }
-  if (e.target.classList.contains('cart-remove') && id) {
-    retirerDuPanier(id);
-    toast('Article retiré du panier.');
-  }
-});
-
-/* ─────────────────────────────────────────
-   SIDEBAR — OUVERTURE / FERMETURE
-───────────────────────────────────────── */
-function ouvrirSidebar() {
-  rendrePanier();
-  cartSidebar.classList.add('open');
-  cartBg.classList.add('open');
-  lockScroll(true);
-  cartClose.focus();
-}
-
-function fermerSidebar() {
-  cartSidebar.classList.remove('open');
-  cartBg.classList.remove('open');
-  lockScroll(false);
-}
-
-cartToggle.addEventListener('click', ouvrirSidebar);
-cartClose.addEventListener('click', fermerSidebar);
-cartBg.addEventListener('click', fermerSidebar);
-
-/* ─────────────────────────────────────────
-   CHECKOUT — OUVERTURE / FERMETURE
-───────────────────────────────────────── */
-function ouvrirCheckout() {
-  fermerSidebar();
-
-  // Récapitulatif
-  recapItems.innerHTML = '';
-  panier.forEach(item => {
-    const svgClean = item.svgHTML.replace(/<span[^>]*product-badge[^>]*>.*?<\/span>/gi, '');
-    const div = document.createElement('div');
-    div.className = 'recap-item';
-    div.innerHTML = `
-      <div class="recap-thumb">${svgClean}</div>
-      <div class="recap-info">
-        <div class="recap-name">${item.name}</div>
-        <div class="recap-qty">Quantité : ${item.qty}</div>
-      </div>
-      <span class="recap-price">${fmt(item.price * item.qty)}</span>
-    `;
-    recapItems.appendChild(div);
-  });
-
-  const st  = calculerSousTotal();
-  const liv = calculerLivraison(st);
-  const tot = st + liv;
-
-  rSubtotal.textContent = fmt(st);
-  rShipping.textContent = liv === 0 ? '🎁 Offerte' : fmt(liv);
-  rTotal.textContent    = fmt(tot);
-  payTotal.textContent  = fmt(tot);
-
-  checkoutScreen.classList.add('open');
-  lockScroll(true);
-}
-
-function fermerCheckout() {
-  checkoutScreen.classList.remove('open');
-  lockScroll(false);
-  ouvrirSidebar();
-}
-
-btnCheckout.addEventListener('click', () => {
-  if (panier.length === 0) { toast('Votre panier est vide !'); return; }
-  ouvrirCheckout();
-});
-
-checkoutBack.addEventListener('click', fermerCheckout);
-
-/* ─────────────────────────────────────────
-   FORMULAIRE CARTE — FORMATAGE TEMPS RÉEL
-───────────────────────────────────────── */
-cardNumInput.addEventListener('input', e => {
-  let v = e.target.value.replace(/\D/g, '').substring(0, 16);
-  const grps = [];
-  for (let i = 0; i < v.length; i += 4) grps.push(v.substring(i, i+4));
-  e.target.value = grps.join(' ');
-  // Prévisualisation
-  let prev = '';
-  for (let i = 0; i < 16; i++) {
-    if (i && i % 4 === 0) prev += ' ';
-    prev += i < v.length ? v[i] : '•';
-  }
-  cardNumPrev.textContent = prev;
-});
-
-$('f-card-name').addEventListener('input', e => {
-  cardHolderPrev.textContent = e.target.value.toUpperCase() || 'VOTRE NOM';
-});
-
-$('f-card-exp').addEventListener('input', e => {
-  let v = e.target.value.replace(/\D/g,'');
-  if (v.length >= 2) v = v.substring(0,2) + '/' + v.substring(2,4);
-  e.target.value = v;
-  cardExpPrev.textContent = v || 'MM/AA';
-});
-
-/* ─────────────────────────────────────────
-   PAIEMENT — VALIDATION & SUCCÈS
-───────────────────────────────────────── */
-function validerFormulaire() {
-  const champs = [
-    {id:'f-prenom',   lbl:'le prénom'},
-    {id:'f-nom',      lbl:'le nom'},
-    {id:'f-email',    lbl:"l'e-mail"},
-    {id:'f-adresse',  lbl:"l'adresse"},
-    {id:'f-cp',       lbl:'le code postal'},
-    {id:'f-ville',    lbl:'la ville'},
-    {id:'f-card-name',lbl:'le titulaire de la carte'},
-    {id:'f-card-num', lbl:'le numéro de carte'},
-    {id:'f-card-exp', lbl:"la date d'expiration"},
-    {id:'f-card-cvc', lbl:'le code CVC'},
-  ];
-
-  for (const c of champs) {
-    const el = $(c.id);
-    if (!el.value.trim()) {
-      el.classList.add('error');
-      el.focus();
-      toast(`⚠ Veuillez renseigner ${c.lbl}.`);
-      setTimeout(() => el.classList.remove('error'), 2000);
-      return false;
-    }
-  }
-
-  const email = $('f-email').value.trim();
-  if (!email.includes('@') || !email.includes('.')) {
-    $('f-email').classList.add('error');
-    $('f-email').focus();
-    toast("⚠ Format d'e-mail invalide.");
-    setTimeout(() => $('f-email').classList.remove('error'), 2000);
-    return false;
-  }
-
-  const num = $('f-card-num').value.replace(/\s/g,'');
-  if (num.length < 16) {
-    $('f-card-num').classList.add('error');
-    $('f-card-num').focus();
-    toast('⚠ Numéro de carte invalide (16 chiffres).');
-    setTimeout(() => $('f-card-num').classList.remove('error'), 2000);
-    return false;
-  }
-
-  return true;
-}
-
-btnPay.addEventListener('click', () => {
-  if (!validerFormulaire()) return;
-
-  btnPay.disabled = true;
-  btnPay.textContent = '⏳ Traitement en cours…';
-
-  setTimeout(() => {
-    // Vider le panier
-    panier = [];
-    mettreAJourBadge();
-
-    // Fermer checkout
-    checkoutScreen.classList.remove('open');
-
-    // Succès
-    successOrder.textContent = 'Numéro de commande : ' + genOrderId();
-    successOverlay.classList.add('open');
-
-    // Reset bouton
-    btnPay.disabled = false;
-    btnPay.innerHTML = `🔒 Payer ma commande — <span id="pay-total">0 €</span>`;
-  }, 1800);
-});
-
-/* ─────────────────────────────────────────
-   SUCCÈS — RETOUR
-───────────────────────────────────────── */
-btnSuccessBack.addEventListener('click', () => {
-  successOverlay.classList.remove('open');
-  lockScroll(false);
-  // Reset formulaires
-  document.querySelectorAll('.checkout-screen input').forEach(el => { el.value = ''; el.classList.remove('error'); });
-  cardNumPrev.textContent    = '•••• •••• •••• ••••';
-  cardHolderPrev.textContent = 'VOTRE NOM';
-  cardExpPrev.textContent    = 'MM/AA';
-  document.getElementById('boutique').scrollIntoView({ behavior:'smooth' });
-});
-
-/* ─────────────────────────────────────────
-   FILTRES BOUTIQUE
-───────────────────────────────────────── */
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const f = btn.dataset.filter;
-    document.querySelectorAll('.product-card').forEach(card => {
-      const show = f === 'all' || card.dataset.category === f;
-      card.style.display = show ? '' : 'none';
-    });
-  });
-});
-
-/* ─────────────────────────────────────────
-   STARFIELD CANVAS
-───────────────────────────────────────── */
-(function() {
-  const canvas = $('stars-canvas');
-  const ctx    = canvas.getContext('2d');
-  let stars    = [];
-
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
-  function init() {
-    stars = Array.from({length:160}, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.2 + 0.2,
-      a: Math.random(),
-      spd: Math.random() * 0.003 + 0.001,
-      ph: Math.random() * Math.PI * 2,
-    }));
-  }
-
-  function draw(t) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach(s => {
-      s.a = 0.3 + 0.4 * Math.sin(s.ph + t * s.spd);
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(200,210,230,${s.a})`;
-      ctx.fill();
-    });
-    requestAnimationFrame(draw);
-  }
-
-  resize(); init(); requestAnimationFrame(draw);
-  window.addEventListener('resize', () => { resize(); init(); }, {passive:true});
-})();
-
-/* ─────────────────────────────────────────
-   HEADER SCROLL
-───────────────────────────────────────── */
-window.addEventListener('scroll', () => {
-  $('main-header').style.background = window.scrollY > 60
-    ? 'rgba(8,9,13,0.97)' : 'rgba(8,9,13,0.72)';
-}, {passive:true});
-
-/* ─────────────────────────────────────────
-   MOBILE NAV
-───────────────────────────────────────── */
-const mobileNav  = $('mobile-nav');
-const hamburger  = $('hamburger-btn');
-const mobileClose= $('mobile-nav-close');
-
-hamburger.addEventListener('click',  () => { mobileNav.classList.add('open'); lockScroll(true); });
-mobileClose.addEventListener('click', () => { mobileNav.classList.remove('open'); lockScroll(false); });
-document.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', () => { mobileNav.classList.remove('open'); lockScroll(false); }));
-
-/* ─────────────────────────────────────────
-   TOUCHE ÉCHAP — ferme tout
-───────────────────────────────────────── */
-document.addEventListener('keydown', e => {
-  if (e.key !== 'Escape') return;
-  if (modal.classList.contains('open'))           fermerModale();
-  else if (cartSidebar.classList.contains('open'))fermerSidebar();
-  else if (checkoutScreen.classList.contains('open')) fermerCheckout();
-});
-
-/* ─────────────────────────────────────────
-   SCROLL REVEAL
-───────────────────────────────────────── */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-/* ─────────────────────────────────────────
-   ANCRES FLUIDES
-───────────────────────────────────────── */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const id = a.getAttribute('href');
-    if (id === '#') return;
-    const target = document.querySelector(id);
-    if (target) {
-      e.preventDefault();
-      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior:'smooth' });
-    }
-  });
-});
-</script>
 </body>
 </html>
