@@ -42,7 +42,7 @@ exports.handler = async (event) => {
         price_data: {
           currency: 'eur',
           product_data: { name: "Livraison sécurisée" },
-          unit_amount: 990,
+          unit_amount: 90,
         },
         quantity: 1,
       });
