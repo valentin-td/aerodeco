@@ -337,38 +337,37 @@
     scroll-snap-align: start;
   }
 
-  /* Style du bouton 3D */
-  /* Style du bouton 3D */
-.btn-3d-action {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(8, 9, 13, 0.85);
-  border: 1px solid var(--cyan);
-  color: var(--cyan);
-  padding: 8px 18px;
-  border-radius: 30px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.85rem;
-  backdrop-filter: blur(10px);
-  z-index: 10;
-  transition: all 0.3s ease;
-  white-space: nowrap; /* Force le texte sur une seule ligne */
-  max-width: 90%; /* Empêche de toucher les bords de l'écran */
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-}
+  /* Style du bouton 3D REVISÉ POUR ÊTRE COMPACT */
+  .btn-3d-action {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(8, 9, 13, 0.85);
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    padding: 8px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.85rem;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Empêche le texte de passer sur 2 lignes */
+    max-width: 90%;      /* Évite que ça touche les bords de l'écran */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  }
 
-.btn-3d-action:hover {
-  background: var(--cyan);
-  color: var(--void);
-}
+  .btn-3d-action:hover {
+    background: var(--cyan);
+    color: var(--void);
+  }
 
   .modal-content { padding: 2.5rem 2rem; display: flex; flex-direction: column; }
   .modal-ref { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; }
@@ -480,16 +479,31 @@
   .mobile-nav a:hover { color:var(--cyan); }
   .mobile-nav-close { position:absolute; top:1.5rem; right:2rem; background:none; border:none; color:var(--silver); font-size:1.5rem; cursor:pointer; }
 
-  /* ── RESPONSIVE ── */
+  /* ── RESPONSIVE (AVEC CORRECTION MODALE/3D) ── */
   @media (max-width: 900px) {
     nav { display: none; }
     .hamburger { display: flex; }
     .mif-inner { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
     .mif-ring { margin: 0 auto; }
     .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    
+    /* Correction de la Modale sur Mobile */
     .modal-box { grid-template-columns: 1fr; max-height: 95vh; }
-    .modal-img-wrap { border-radius: 12px 12px 0 0; max-height: 240px; }
+    .modal-img-wrap { 
+      border-radius: 12px 12px 0 0; 
+      aspect-ratio: auto; 
+      height: 35vh; 
+      min-height: 250px; 
+    }
+    
+    /* Réduction du bouton 3D sur mobile */
+    .btn-3d-action {
+      bottom: 12px;
+      font-size: 0.75rem;
+      padding: 8px 14px;
+    }
   }
+
   @media (max-width: 600px) {
     header { padding: 0 1.25rem; }
     .section-wrapper { padding: 0 1.25rem; }
