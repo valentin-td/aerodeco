@@ -53,6 +53,7 @@ exports.handler = async (event) => {
       shipping_address_collection: { allowed_countries: ['FR', 'BE', 'CH', 'LU'] },
       line_items: lineItems,
       mode: 'payment',
+      allow_promotion_codes: true, // 👈 LA LIGNE MAGIQUE EST ICI
       // 👇 REMPLACE LES URLS CI-DESSOUS PAR TON LIEN NETLIFY EXACT
       success_url: 'https://keen-licorice-f3a3f7.netlify.app/?success=true',
       cancel_url: 'https://keen-licorice-f3a3f7.netlify.app/',
