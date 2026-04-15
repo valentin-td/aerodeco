@@ -274,7 +274,7 @@
   .footer-mif { display: flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--subtle); }
 
   /* ══════════════════════════════════════════
-     MODALE PRODUIT
+     MODALE PRODUIT + 3D CAROUSEL CSS 
   ══════════════════════════════════════════ */
   .modal-overlay {
     position: fixed; inset: 0; z-index: 500;
@@ -311,8 +311,58 @@
   }
   .modal-close:hover { background: rgba(77,220,255,0.1); color: var(--cyan); border-color: var(--cyan); }
 
-  .modal-img-wrap { aspect-ratio: 1; overflow: hidden; border-radius: 12px 0 0 12px; background: var(--surface); }
+  .modal-img-wrap { 
+    aspect-ratio: 1; 
+    overflow: hidden; 
+    border-radius: 12px 0 0 12px; 
+    background: var(--surface); 
+    position: relative; /* Ajout pour le bouton 3D */
+  }
   .modal-img-wrap svg { width: 100%; height: 100%; }
+
+  /* CSS du carrousel */
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    width: 100%;
+    height: 100%;
+    background: var(--surface);
+    scrollbar-width: none; /* Cache la barre de défilement */
+  }
+  .carousel::-webkit-scrollbar { display: none; }
+  .carousel-img {
+    min-width: 100%;
+    object-fit: cover;
+    scroll-snap-align: start;
+  }
+
+  /* Style du bouton 3D */
+  .btn-3d-action {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(8, 9, 13, 0.8);
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.85rem;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
+  .btn-3d-action:hover {
+    background: var(--cyan);
+    color: var(--void);
+  }
 
   .modal-content { padding: 2.5rem 2rem; display: flex; flex-direction: column; }
   .modal-ref { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; }
@@ -577,7 +627,9 @@
         data-id="ADC-001" data-name="Ariane Classic" data-price="89" data-ref="REF · ADC-001"
         data-desc="Inspiré du légendaire lanceur européen. Version 30cm, finition nacre blanc stellaire."
         data-full-desc="Inspiré du légendaire lanceur Ariane 5, ce modèle est un hommage à l'excellence spatiale européenne.|Imprimé en PLA+ haute densité à 0.1mm de résolution, chaque détail est reproduit fidèlement.|La finition nacre blanc stellaire lui confère une élégance intemporelle, parfaite pour un bureau ou une bibliothèque."
-        data-size="30 cm" data-material="PLA+ Premium" data-finish="Nacre blanc stellaire">
+        data-size="30 cm" data-material="PLA+ Premium" data-finish="Nacre blanc stellaire"
+        data-images="" 
+        data-3d="https://modelviewer.dev/shared-assets/models/Astronaut.glb">
         <div class="product-img-wrap">
           <span class="product-badge new">Nouveau</span>
           <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -614,7 +666,9 @@
         data-id="ADC-002" data-name="Saturn V Prestige" data-price="149" data-ref="REF · ADC-002"
         data-desc="La plus grande fusée jamais construite, reproduite en 45cm. Finition bicolore argent &amp; orange."
         data-full-desc="Le Saturn V est la fusée la plus puissante jamais construite par l'humanité.|Ce modèle en 45cm rend hommage à ce géant de l'espace avec une précision obsessionnelle — chaque étage est fidèle à l'original.|La finition bicolore argent métallique et orange brûlé lui confère un caractère saisissant. Idéal comme pièce maîtresse."
-        data-size="45 cm" data-material="PLA+ Premium" data-finish="Bicolore argent &amp; orange">
+        data-size="45 cm" data-material="PLA+ Premium" data-finish="Bicolore argent &amp; orange"
+        data-images="" 
+        data-3d="https://modelviewer.dev/shared-assets/models/Astronaut.glb">
         <div class="product-img-wrap">
           <span class="product-badge">Best-seller</span>
           <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -655,7 +709,9 @@
         data-id="ADC-003" data-name="Falcon Gold Edition" data-price="229" data-ref="REF · ADC-003 · N°47/100"
         data-desc="Édition numérotée et signée. Finition or satiné exclusif, 40cm. Socle acajou inclus."
         data-full-desc="Cette édition limitée à 100 exemplaires numérotés est la pièce la plus exclusive de notre collection.|Sa silhouette élancée est mise en valeur par une finition or satiné réalisée à la main en plusieurs couches.|Livrée avec un socle en acajou massif et un certificat d'authenticité signé par notre équipe."
-        data-size="40 cm" data-material="PLA+ Premium" data-finish="Or satiné + socle acajou">
+        data-size="40 cm" data-material="PLA+ Premium" data-finish="Or satiné + socle acajou"
+        data-images="" 
+        data-3d="https://modelviewer.dev/shared-assets/models/Astronaut.glb">
         <div class="product-img-wrap">
           <span class="product-badge limited">Édition Limitée</span>
           <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -694,7 +750,9 @@
         data-id="ADC-004" data-name="Cosmos Bleu" data-price="79" data-ref="REF · ADC-004"
         data-desc="Design rétro-futuriste années 60. Finition bleu cyan nacré, 25cm. Idéal pour bureau."
         data-full-desc="Plongez dans l'ère spatiale des années 60 avec ce modèle rétro-futuriste aux lignes pures et épurées.|La finition bleu cyan nacré est obtenue après 3 couches de peinture appliquées à la main, suivies d'un vernis satiné haute résistance.|Sa taille compacte (25cm) en fait le compagnon idéal d'un bureau ou d'une étagère."
-        data-size="25 cm" data-material="PLA+ Premium" data-finish="Bleu cyan nacré">
+        data-size="25 cm" data-material="PLA+ Premium" data-finish="Bleu cyan nacré"
+        data-images="" 
+        data-3d="https://modelviewer.dev/shared-assets/models/Astronaut.glb">
         <div class="product-img-wrap">
           <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="300" height="300" fill="#13161f"/>
@@ -728,7 +786,9 @@
         data-id="ADC-005" data-name="Lourd Titan III" data-price="189" data-ref="REF · ADC-005"
         data-desc="Architecture boosters latéraux, 50cm. Finition gris anthracite &amp; accents braise. Pièce maîtresse."
         data-full-desc="Le Titan III est le modèle le plus imposant de notre collection à 50cm. Son architecture à boosters latéraux en fait une sculpture industrielle à part entière.|La finition gris anthracite mat est contrebalancée par des accents orange braise sur les empennages et les joints de séparation des étages.|Cette pièce maîtresse est taillée pour dominer un espace de réception. Livrée avec un socle en aluminium brossé."
-        data-size="50 cm" data-material="PLA+ Premium" data-finish="Gris anthracite &amp; orange braise">
+        data-size="50 cm" data-material="PLA+ Premium" data-finish="Gris anthracite &amp; orange braise"
+        data-images="" 
+        data-3d="https://modelviewer.dev/shared-assets/models/Astronaut.glb">
         <div class="product-img-wrap">
           <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="300" height="300" fill="#13161f"/>
@@ -771,7 +831,9 @@
         data-id="ADC-006" data-name="Stealth Noir Mat" data-price="259" data-ref="REF · ADC-006 · N°12/30"
         data-desc="Édition collector, finition carbone noir mat. 38cm. Silhouette épurée, lignes cyan électriques."
         data-full-desc="Le Stealth Noir Mat est notre pièce la plus iconique. Sa silhouette tranchante aux ailettes delta-wing est habillée d'une finition carbone noir mat ultra-premium.|Les lignes cyan électriques sont peintes au pinceau fin par notre artisan, donnant à chaque pièce un caractère unique et légèrement différent.|Édition limitée à seulement 30 exemplaires, livrée dans un écrin noir satiné avec certificat d'authenticité gravé."
-        data-size="38 cm" data-material="PLA+ Premium" data-finish="Carbone noir mat + cyan">
+        data-size="38 cm" data-material="PLA+ Premium" data-finish="Carbone noir mat + cyan"
+        data-images="" 
+        data-3d="https://modelviewer.dev/shared-assets/models/Astronaut.glb">
         <div class="product-img-wrap">
           <span class="product-badge limited">Dernières pièces</span>
           <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -808,7 +870,8 @@
         </div>
       </article>
 
-    </div></div>
+    </div>
+  </div>
 </section>
 
 <section class="mif-section">
@@ -906,7 +969,22 @@
 <div class="modal-overlay" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-product-name">
   <div class="modal-box" id="modal-box">
     <button class="modal-close" id="modal-close-btn" aria-label="Fermer">✕</button>
-    <div class="modal-img-wrap" id="modal-img-wrap"></div>
+    
+    <div class="modal-img-wrap" id="modal-img-wrap">
+      <div id="modal-media-container" style="position: relative; width: 100%; height: 100%;">
+        <div id="image-carousel" class="carousel">
+          </div>
+        <div id="3d-container" style="display: none; width: 100%; height: 100%;">
+          <model-viewer id="model-3d" src="" auto-rotate camera-controls ar shadow-intensity="1" style="width: 100%; height: 100%;"></model-viewer>
+        </div>
+      </div>
+      
+      <button id="toggle-3d-btn" class="btn-3d-action">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        Voir en 3D (Réalité Augmentée)
+      </button>
+    </div>
+
     <div class="modal-content">
       <div class="modal-ref"  id="modal-ref"></div>
       <h2 class="modal-name"  id="modal-product-name"></h2>
@@ -953,6 +1031,8 @@
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
   <span id="toast-message">Action effectuée</span>
 </div>
+
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
 <script src="script.js"></script>
 
