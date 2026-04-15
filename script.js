@@ -1,6 +1,6 @@
 /**
  * ═══════════════════════════════════════════════════════════════
- * AERODECO — script.js (Version Finale Sécurisée)
+ * AERODECO — script.js (Version Finale avec Carrousel & 3D AR)
  * ═══════════════════════════════════════════════════════════════
  */
 
@@ -29,7 +29,7 @@ function toggleScrollBody(bloquer) {
   document.body.classList.toggle('no-scroll', bloquer);
 }
 
-/* ── 2. MODALE PRODUIT ── */
+/* ── 2. MODALE PRODUIT (AVEC CARROUSEL ET 3D) ── */
 function ouvrirModale(card) {
   currentProduct = {
     id       : card.dataset.id,
@@ -41,19 +41,67 @@ function ouvrirModale(card) {
     material : card.dataset.material,
     finish   : card.dataset.finish,
     thumbHTML: card.querySelector('.product-img-wrap') ? card.querySelector('.product-img-wrap').innerHTML : '',
+    // Récupération des nouvelles données pour le carrousel et la 3D
+    images   : card.dataset.images ? card.dataset.images.split(',').filter(img => img.trim() !== '') : [],
+    model3D  : card.dataset['3d'] || ''
   };
 
   modalQty = 1;
   const qtyValue = document.getElementById('qty-value');
   if (qtyValue) qtyValue.textContent = modalQty;
 
-  const modalImgWrap = document.getElementById('modal-img-wrap');
-  if (modalImgWrap) {
-    modalImgWrap.innerHTML = currentProduct.thumbHTML;
-    const badge = modalImgWrap.querySelector('.product-badge');
-    if (badge) badge.remove();
+  // ── GESTION DU MÉDIA (CARROUSEL / 3D) ──
+  const carousel = document.getElementById('image-carousel');
+  const container3D = document.getElementById('3d-container');
+  const viewer3D = document.getElementById('model-3d');
+  const toggleBtn = document.getElementById('toggle-3d-btn');
+
+  if (carousel && container3D && toggleBtn) {
+    // 1. Réinitialisation de l'affichage par défaut (on montre les photos)
+    carousel.style.display = 'flex';
+    container3D.style.display = 'none';
+    toggleBtn.innerHTML = `
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+      Voir en 3D (Réalité Augmentée)
+    `;
+
+    // 2. Injection des images dans le carrousel
+    if (currentProduct.images.length > 0) {
+      // S'il y a des liens d'images dans data-images
+      carousel.innerHTML = currentProduct.images.map(img => `<img src="${img.trim()}" class="carousel-img" alt="${currentProduct.name}">`).join('');
+    } else {
+      // Fallback : s'il n'y a pas d'image, on affiche le SVG de la carte
+      const cleanSVG = currentProduct.thumbHTML.replace(/<span[^>]*product-badge[^>]*>.*?<\/span>/gi, '');
+      carousel.innerHTML = `<div class="carousel-img" style="display:flex; align-items:center; justify-content:center; width:100%; height:100%;">${cleanSVG}</div>`;
+    }
+
+    // 3. Logique du bouton 3D
+    if (currentProduct.model3D) {
+      toggleBtn.style.display = 'flex'; // On montre le bouton
+      toggleBtn.onclick = () => {
+        if (container3D.style.display === 'none') {
+          // On bascule en mode 3D
+          carousel.style.display = 'none';
+          container3D.style.display = 'block';
+          if (viewer3D) viewer3D.src = currentProduct.model3D; // Charge le fichier 3D
+          toggleBtn.innerHTML = 'Retour aux photos';
+        } else {
+          // On revient aux photos
+          carousel.style.display = 'flex';
+          container3D.style.display = 'none';
+          toggleBtn.innerHTML = `
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            Voir en 3D (Réalité Augmentée)
+          `;
+        }
+      };
+    } else {
+      // Si la fusée n'a pas de fichier 3D, on cache le bouton
+      toggleBtn.style.display = 'none';
+    }
   }
 
+  // ── MISE A JOUR DES TEXTES ──
   const modalRef = document.getElementById('modal-ref');
   const modalName = document.getElementById('modal-product-name');
   const modalPrice = document.getElementById('modal-price');
@@ -78,6 +126,7 @@ function ouvrirModale(card) {
     `;
   }
 
+  // ── OUVERTURE DE LA MODALE ──
   const productModal = document.getElementById('product-modal');
   if (productModal) {
     productModal.classList.add('open');
@@ -315,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // ✨ CORRECTION DE L'ANIMATION "REVEAL" ✨
+  // ✨ ANIMATION "REVEAL" ✨
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
