@@ -3,7 +3,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 // 🛑 TON CATALOGUE SÉCURISÉ
 // C'est ici que tu définis tes prix. Stripe prend toujours les prix en CENTIMES. (ex: 89€ = 8900)
 const inventaire = {
-  "ADC-001": { nom: "Ariane Classic", prixCentimes: 100 },
+  "ADC-001": { nom: "Ariane Classic", prixCentimes: 5000 },
   "ADC-002": { nom: "Saturn V Prestige", prixCentimes: 100 },
   "ADC-003": { nom: "Falcon Gold Edition", prixCentimes: 22900 },
   "ADC-004": { nom: "Cosmos Bleu", prixCentimes: 7900 },
