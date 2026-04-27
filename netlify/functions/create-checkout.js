@@ -37,7 +37,7 @@ exports.handler = async (event) => {
     });
 
     // Frais de port : 9.90€ si la commande est inférieure à 150€ (15000 centimes)
-    if (sousTotal < 15000) {
+    if (sousTotal < 1500) {
       lineItems.push({
         price_data: {
           currency: 'eur',
