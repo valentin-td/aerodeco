@@ -18,7 +18,8 @@
    12. Overlay Succès Paiement
    13. Toast Notification
    14. Animations & Keyframes
-   15. Responsive (Tablette & Mobile)
+   15. Section Avis Clients
+   16. Responsive (Tablette & Mobile)
 ═══════════════════════════════════════════════════════════════ */
 
 
@@ -837,7 +838,6 @@ footer {
 .modal-ref { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; }
 .modal-name { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.06em; color: var(--white); line-height: 1.05; margin-bottom: 0.5rem; }
 
-/* ─ NOUVEAU : SÉLECTEUR DE TAILLE DANS LA MODALE ─ */
 .selector-container {
   margin: 10px 0 15px 0;
 }
@@ -872,7 +872,6 @@ footer {
   border-color: var(--cyan);
   box-shadow: 0 0 10px rgba(77, 220, 255, 0.15);
 }
-/* ─ FIN NOUVEAU SÉLECTEUR ─ */
 
 .modal-price {
   font-family: var(--font-display);
@@ -1044,7 +1043,6 @@ option { background: var(--panel); }
 @keyframes drawCircle { to { stroke-dashoffset: 0; } }
 @keyframes drawCheck { to { stroke-dashoffset: 0; } }
 
-/* ── NOUVEAU : CORRECTION DU BUG DES FUSÉES INVISIBLES ── */
 .reveal {
   opacity: 1 !important;
   transform: none !important;
@@ -1056,7 +1054,101 @@ option { background: var(--panel); }
 
 
 /* ─────────────────────────────────────────────────────────────
-   15. RESPONSIVE (Tablette & Mobile)
+   15. SECTION AVIS CLIENTS
+───────────────────────────────────────────────────────────────*/
+.reviews-section {
+  padding: var(--sp-xl) 0;
+  background: var(--void);
+  border-top: 1px solid var(--rim);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.review-card {
+  background: var(--deep);
+  border: 1px solid var(--rim);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(77, 220, 255, 0.1);
+  border-color: rgba(77, 220, 255, 0.3);
+}
+
+.review-stars {
+  display: flex;
+  gap: 4px;
+  color: var(--cyan);
+  width: 14px;
+  margin-bottom: 1rem;
+}
+
+.review-stars svg {
+  width: 14px;
+  height: 14px;
+}
+
+.review-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+.review-text {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.7;
+  flex-grow: 1;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.review-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--rim);
+  padding-top: 1rem;
+}
+
+.review-author {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--bright);
+}
+
+.review-verified {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--success);
+  background: rgba(40, 217, 131, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.leave-review-wrapper {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   16. RESPONSIVE (Tablette & Mobile)
 ───────────────────────────────────────────────────────────────*/
 @media (max-width: 900px) {
   #main-header nav { display: none; }
@@ -1087,4 +1179,5 @@ option { background: var(--panel); }
   .footer-bottom { flex-direction: column; text-align: center; }
   .pillars-grid { grid-template-columns: 1fr; }
   .mif-ring { width: 260px; height: 260px; }
+  .reviews-grid { grid-template-columns: 1fr; } /* Ajout pour les avis sur mobile */
 }
