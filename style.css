@@ -1148,36 +1148,45 @@ option { background: var(--panel); }
 
 
 /* ─────────────────────────────────────────────────────────────
-   16. RESPONSIVE (Tablette & Mobile)
+   MENU MOBILE (Caché sur ordinateur)
 ───────────────────────────────────────────────────────────────*/
-@media (max-width: 900px) {
-  #main-header nav { display: none; }
-  .hamburger { display: flex; }
-  .modal-box { grid-template-columns: 1fr; max-height: 95vh; }
-  .modal-img-wrap { border-radius: var(--radius-lg) var(--radius-lg) 0 0; max-height: 240px; }
-  .checkout-body { grid-template-columns: 1fr; }
-  .checkout-summary { position: static; }
-  .footer-inner, .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .products-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-  .btn-3d-action { bottom: 12px; font-size: 0.75rem; padding: 8px 14px; }
-  .mif-inner { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
-  .mif-ring { margin: 0 auto; }
+.mobile-nav { 
+  display: none; /* Cache le menu sur PC */
+  position: fixed; 
+  inset: 0; 
+  z-index: 999; 
+  background: rgba(8,9,13,0.97); 
+  backdrop-filter: blur(20px); 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 2rem; 
 }
-
-@media (max-width: 600px) {
-  #main-header, .section-wrapper { padding: 0 1rem; }
-  .hero { padding: 6rem 1rem 3rem; }
-  .hero-stats { gap: 1.5rem; }
-  .products-grid { grid-template-columns: 1fr; }
-  .modal-actions { flex-direction: column; }
-  .btn-add-to-cart, .btn-modal-add { width: 100%; }
-  .form-grid { grid-template-columns: 1fr; }
-  .form-full { grid-column: auto; }
-  .checkout-container { padding: 1rem; }
-  .toast { left: 1rem; right: 1rem; bottom: 1rem; justify-content: center; }
-  .footer-inner, .footer-grid { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; text-align: center; }
-  .pillars-grid { grid-template-columns: 1fr; }
-  .mif-ring { width: 260px; height: 260px; }
-  .reviews-grid { grid-template-columns: 1fr; } /* Ajout pour les avis sur mobile */
+.mobile-nav.open { 
+  display: flex; /* Affiche le menu quand on clique sur l'icône mobile */
+}
+.mobile-nav a { 
+  font-family: var(--font-display); 
+  font-size: 3rem; 
+  letter-spacing: 0.1em; 
+  color: var(--bright); 
+  text-decoration: none; 
+  transition: color 0.2s; 
+}
+.mobile-nav a:hover { 
+  color: var(--cyan); 
+}
+.mobile-nav-close { 
+  position: absolute; 
+  top: 1.5rem; 
+  right: 2rem; 
+  background: none; 
+  border: none; 
+  color: var(--silver); 
+  font-size: 2rem; 
+  cursor: pointer; 
+  transition: color 0.2s;
+}
+.mobile-nav-close:hover { 
+  color: var(--cyan); 
 }
