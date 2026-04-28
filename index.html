@@ -7,9 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<style>
-  /* Les styles sont dans ton fichier style.css séparé */
-</style>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,7 +22,8 @@
     <a href="#accueil">Accueil</a>
     <a href="#boutique">Boutique</a>
     <a href="#savoir-faire">Le Savoir-Faire</a>
-    <a href="#avis">Avis</a> <a href="#contact">Contact</a>
+    <a href="#avis">Avis</a>
+    <a href="#contact">Contact</a>
   </nav>
   <div class="header-actions">
     <button class="cart-btn" id="cart-toggle-btn" aria-label="Panier">
@@ -87,25 +85,25 @@
 
 <section class="savoir-faire" id="savoir-faire">
   <div class="section-wrapper">
-    <div class="section-header">
+    <div class="section-header reveal">
       <span class="section-label">Notre approche</span>
       <h2 class="section-title">LE SAVOIR-FAIRE<br>FRANÇAIS</h2>
       <p class="section-desc">Chaque modèle est le résultat d'une exigence artisanale et d'une technologie de pointe, pensée et réalisée dans nos ateliers français.</p>
     </div>
     <div class="pillars-grid">
-      <div class="pillar">
+      <div class="pillar reveal reveal-delay-1">
         <span class="pillar-num">01</span>
         <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="30" width="32" height="10" rx="2"/><path d="M16 30V14a8 8 0 0116 0v16"/><circle cx="24" cy="12" r="3"/><line x1="24" y1="9" x2="24" y2="4"/><line x1="20" y1="30" x2="20" y2="22"/><line x1="28" y1="30" x2="28" y2="22"/></svg>
         <h3 class="pillar-title">IMPRESSION 3D<br>DE HAUTE PRÉCISION</h3>
         <p class="pillar-text">Nos imprimantes FDM de dernière génération atteignent une résolution de 0.1mm. Chaque couche est déposée avec une précision chirurgicale pour reproduire fidèlement les détails des vrais lanceurs spatiaux.</p>
       </div>
-      <div class="pillar">
+      <div class="pillar reveal reveal-delay-2">
         <span class="pillar-num">02</span>
         <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="8"/><line x1="24" y1="6" x2="24" y2="16"/><line x1="24" y1="32" x2="24" y2="42"/><line x1="6" y1="24" x2="16" y2="24"/><line x1="32" y1="24" x2="42" y2="24"/><path d="M18 18l-4-4M30 30l4 4M30 18l4-4M18 30l-4 4"/></svg>
         <h3 class="pillar-title">DESIGN<br>AÉROSPATIAL EXCLUSIF</h3>
         <p class="pillar-text">Modélisés par des passionnés de l'espace, nos designs s'inspirent des grandes icônes de l'astronautique : Ariane, Falcon, Saturn V. Chaque courbe, chaque aileron est une réinterprétation artistique fidèle.</p>
       </div>
-      <div class="pillar">
+      <div class="pillar reveal reveal-delay-3">
         <span class="pillar-num">03</span>
         <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l4 12h12l-10 7 4 12-10-7-10 7 4-12L8 16h12z"/><circle cx="24" cy="24" r="20" stroke-dasharray="3 4"/></svg>
         <h3 class="pillar-title">MADE IN<br>FRANCE</h3>
@@ -118,26 +116,274 @@
 
 <section class="boutique" id="boutique">
   <div class="section-wrapper">
-    <div class="section-header">
+    <div class="section-header reveal">
       <span class="section-label">Collection 2025</span>
       <h2 class="section-title">LA FLOTTE</h2>
       <p class="section-desc">Six modèles d'exception. Des pièces décoratives qui se posent sur votre bureau, votre bibliothèque, ou illuminent un espace de réception.</p>
     </div>
-    <div class="products-filters">
+    <div class="products-filters reveal">
       <button class="filter-btn active" data-filter="all">Tous</button>
       <button class="filter-btn" data-filter="classique">Classique</button>
       <button class="filter-btn" data-filter="premium">Premium</button>
       <button class="filter-btn" data-filter="edition">Édition Limitée</button>
     </div>
+    
     <div class="products-grid" id="products-grid">
-      </div>
+      <article class="product-card reveal" data-category="classique"
+        data-id="ADC-001" data-name="Ariane Classic" data-price="89" data-ref="REF · ADC-001"
+        data-desc="Inspiré du légendaire lanceur européen. Version 30cm, finition nacre blanc stellaire."
+        data-full-desc="Inspiré du légendaire lanceur Ariane 5, ce modèle est un hommage à l'excellence spatiale européenne.|Imprimé en PLA+ haute densité à 0.1mm de résolution, chaque détail est reproduit fidèlement.|La finition nacre blanc stellaire lui confère une élégance intemporelle, parfaite pour un bureau ou une bibliothèque."
+        data-size="30 cm" data-material="PLA+ Premium" data-finish="Nacre blanc stellaire"
+        data-images="" 
+        data-3d="https://modelviewer.dev/shared-assets/models/Astronaut.glb">
+        <div class="product-img-wrap">
+          <span class="product-badge new">Nouveau</span>
+          <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="300" height="300" fill="#13161f"/>
+            <line x1="0" y1="150" x2="300" y2="150" stroke="#252a3a" stroke-width="0.5"/>
+            <line x1="150" y1="0" x2="150" y2="300" stroke="#252a3a" stroke-width="0.5"/>
+            <ellipse cx="150" cy="220" rx="40" ry="8" fill="#4ddcff" opacity="0.12"/>
+            <path d="M150 60 C150 60 135 100 132 160 L168 160 C165 100 150 60 150 60Z" fill="#c8cfe0"/>
+            <path d="M150 40 C150 40 140 55 138 70 L162 70 C160 55 150 40 150 40Z" fill="#e8ecf5"/>
+            <circle cx="150" cy="120" r="8" fill="#0d1018" stroke="#4ddcff" stroke-width="1"/>
+            <circle cx="150" cy="120" r="5" fill="#1a8aaa" opacity="0.6"/>
+            <path d="M132 160 L118 185 L135 175Z" fill="#6b7394"/>
+            <path d="M168 160 L182 185 L165 175Z" fill="#6b7394"/>
+            <rect x="143" y="160" width="14" height="12" rx="2" fill="#3a4058"/>
+            <rect x="145" y="168" width="10" height="6" rx="1" fill="#252a3a"/>
+            <ellipse cx="150" cy="182" rx="6" ry="10" fill="#ff6b2b" opacity="0.8"/>
+            <ellipse cx="150" cy="186" rx="3" ry="6" fill="#ffd700" opacity="0.9"/>
+            <rect x="132" y="140" width="36" height="2" fill="#4ddcff" opacity="0.4"/>
+            <rect x="133" y="100" width="34" height="1" fill="#4ddcff" opacity="0.2"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-ref">REF · ADC-001</div>
+          <h3 class="product-name">ARIANE<br>CLASSIC</h3>
+          <p class="product-desc">Inspiré du légendaire lanceur européen. Version 30cm, finition nacre blanc stellaire.</p>
+          <div class="product-footer">
+            <div class="product-price">89<span> €</span></div>
+            <button class="add-btn" aria-label="Voir le détail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card reveal reveal-delay-1" data-category="premium"
+        data-id="ADC-002" data-name="Saturn V Prestige" data-price="149" data-ref="REF · ADC-002"
+        data-desc="La plus grande fusée jamais construite, reproduite en 45cm. Finition bicolore argent &amp; orange."
+        data-full-desc="Le Saturn V est la fusée la plus puissante jamais construite par l'humanité.|Ce modèle en 45cm rend hommage à ce géant de l'espace avec une précision obsessionnelle — chaque étage est fidèle à l'original.|La finition bicolore argent métallique et orange brûlé lui confère un caractère saisissant. Idéal comme pièce maîtresse."
+        data-size="45 cm" data-material="PLA+ Premium" data-finish="Bicolore argent &amp; orange"
+        data-images="" 
+        data-3d="https://modelviewer.dev/shared-assets/models/Astronaut.glb">
+        <div class="product-img-wrap">
+          <span class="product-badge">Best-seller</span>
+          <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="300" height="300" fill="#13161f"/>
+            <line x1="0" y1="150" x2="300" y2="150" stroke="#252a3a" stroke-width="0.5"/>
+            <line x1="150" y1="0" x2="150" y2="300" stroke="#252a3a" stroke-width="0.5"/>
+            <ellipse cx="150" cy="225" rx="55" ry="10" fill="#ff6b2b" opacity="0.15"/>
+            <rect x="140" y="55" width="20" height="30" rx="2" fill="#e8ecf5"/>
+            <rect x="136" y="85" width="28" height="40" rx="2" fill="#c8cfe0"/>
+            <rect x="132" y="125" width="36" height="60" rx="2" fill="#b8c4d8"/>
+            <rect x="129" y="185" width="42" height="14" rx="2" fill="#3a4058"/>
+            <path d="M132 175 L118 200 L132 192Z" fill="#6b7394"/>
+            <path d="M168 175 L182 200 L168 192Z" fill="#6b7394"/>
+            <circle cx="150" cy="100" r="5" fill="#0d1018" stroke="#4ddcff" stroke-width="0.75"/>
+            <circle cx="143" cy="145" r="3" fill="#1a8aaa" opacity="0.5"/>
+            <circle cx="157" cy="145" r="3" fill="#1a8aaa" opacity="0.5"/>
+            <rect x="132" y="122" width="36" height="3" fill="#ff6b2b" opacity="0.6"/>
+            <rect x="136" y="82" width="28" height="3" fill="#4ddcff" opacity="0.5"/>
+            <path d="M150 38 L155 55 L145 55Z" fill="#e8ecf5"/>
+            <ellipse cx="143" cy="204" rx="4" ry="7" fill="#ff6b2b" opacity="0.9"/>
+            <ellipse cx="150" cy="204" rx="4" ry="7" fill="#ff6b2b" opacity="0.9"/>
+            <ellipse cx="157" cy="204" rx="4" ry="7" fill="#ff6b2b" opacity="0.9"/>
+            <ellipse cx="150" cy="207" rx="3" ry="5" fill="#ffd700" opacity="0.8"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-ref">REF · ADC-002</div>
+          <h3 class="product-name">SATURN V<br>PRESTIGE</h3>
+          <p class="product-desc">La plus grande fusée jamais construite, reproduite en 45cm. Finition bicolore argent &amp; orange.</p>
+          <div class="product-footer">
+            <div class="product-price">149<span> €</span></div>
+            <button class="add-btn" aria-label="Voir le détail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card reveal reveal-delay-2" data-category="edition"
+        data-id="ADC-003" data-name="Falcon Gold Edition" data-price="229" data-ref="REF · ADC-003 · N°47/100"
+        data-desc="Édition numérotée et signée. Finition or satiné exclusif, 40cm. Socle acajou inclus."
+        data-full-desc="Cette édition limitée à 100 exemplaires numérotés est la pièce la plus exclusive de notre collection.|Sa silhouette élancée est mise en valeur par une finition or satiné réalisée à la main en plusieurs couches.|Livrée avec un socle en acajou massif et un certificat d'authenticité signé par notre équipe."
+        data-size="40 cm" data-material="PLA+ Premium" data-finish="Or satiné + socle acajou"
+        data-images="" 
+        data-3d="https://modelviewer.dev/shared-assets/models/Astronaut.glb">
+        <div class="product-img-wrap">
+          <span class="product-badge limited">Édition Limitée</span>
+          <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="300" height="300" fill="#13161f"/>
+            <line x1="0" y1="150" x2="300" y2="150" stroke="#252a3a" stroke-width="0.5"/>
+            <line x1="150" y1="0" x2="150" y2="300" stroke="#252a3a" stroke-width="0.5"/>
+            <ellipse cx="150" cy="228" rx="50" ry="9" fill="#d4a843" opacity="0.15"/>
+            <path d="M150 45 C147 70 143 120 142 175 L158 175 C157 120 153 70 150 45Z" fill="#e8ecf5"/>
+            <path d="M142 175 L128 200 L138 196Z" fill="#6b7394" stroke="#6b7394" stroke-width="0.5"/>
+            <path d="M158 175 L172 200 L162 196Z" fill="#6b7394" stroke="#6b7394" stroke-width="0.5"/>
+            <line x1="133" y1="198" x2="138" y2="175" stroke="#3a4058" stroke-width="1"/>
+            <line x1="167" y1="198" x2="162" y2="175" stroke="#3a4058" stroke-width="1"/>
+            <ellipse cx="150" cy="178" rx="9" ry="5" fill="#252a3a" stroke="#3a4058" stroke-width="0.75"/>
+            <rect x="142" y="160" width="16" height="3" fill="#d4a843" opacity="0.8"/>
+            <rect x="143" y="110" width="14" height="2" fill="#d4a843" opacity="0.5"/>
+            <circle cx="150" cy="90" r="7" fill="#0d1018" stroke="#d4a843" stroke-width="1"/>
+            <circle cx="150" cy="90" r="4" fill="#7a2e0e" opacity="0.7"/>
+            <path d="M150 38 L153 50 L147 50Z" fill="#3a4058"/>
+            <ellipse cx="150" cy="188" rx="5" ry="8" fill="#d4a843" opacity="0.7"/>
+            <ellipse cx="150" cy="192" rx="3" ry="5" fill="#fff" opacity="0.4"/>
+            <rect x="142" y="130" width="16" height="1.5" fill="#d4a843" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-ref">REF · ADC-003 · N°47/100</div>
+          <h3 class="product-name">FALCON<br>GOLD ED.</h3>
+          <p class="product-desc">Édition numérotée et signée. Finition or satiné exclusif, 40cm. Socle acajou inclus.</p>
+          <div class="product-footer">
+            <div class="product-price">229<span> €</span></div>
+            <button class="add-btn" aria-label="Voir le détail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card reveal" data-category="classique"
+        data-id="ADC-004" data-name="Cosmos Bleu" data-price="79" data-ref="REF · ADC-004"
+        data-desc="Design rétro-futuriste années 60. Finition bleu cyan nacré, 25cm. Idéal pour bureau."
+        data-full-desc="Plongez dans l'ère spatiale des années 60 avec ce modèle rétro-futuriste aux lignes pures et épurées.|La finition bleu cyan nacré est obtenue après 3 couches de peinture appliquées à la main, suivies d'un vernis satiné haute résistance.|Sa taille compacte (25cm) en fait le compagnon idéal d'un bureau ou d'une étagère."
+        data-size="25 cm" data-material="PLA+ Premium" data-finish="Bleu cyan nacré"
+        data-images="" 
+        data-3d="https://modelviewer.dev/shared-assets/models/Astronaut.glb">
+        <div class="product-img-wrap">
+          <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="300" height="300" fill="#13161f"/>
+            <line x1="0" y1="150" x2="300" y2="150" stroke="#252a3a" stroke-width="0.5"/>
+            <line x1="150" y1="0" x2="150" y2="300" stroke="#252a3a" stroke-width="0.5"/>
+            <ellipse cx="150" cy="222" rx="42" ry="7" fill="#4ddcff" opacity="0.1"/>
+            <path d="M150 55 C145 80 138 130 137 180 L163 180 C162 130 155 80 150 55Z" fill="#b8c4d8"/>
+            <path d="M150 38 C148 45 143 55 142 65 L158 65 C157 55 152 45 150 38Z" fill="#6b7394"/>
+            <path d="M137 180 L122 210 L140 200Z" fill="#4ddcff" opacity="0.7"/>
+            <path d="M163 180 L178 210 L160 200Z" fill="#4ddcff" opacity="0.7"/>
+            <ellipse cx="150" cy="183" rx="10" ry="4" fill="#252a3a"/>
+            <rect x="137" y="138" width="26" height="3" fill="#4ddcff" opacity="0.4"/>
+            <rect x="138" y="105" width="24" height="2" fill="#4ddcff" opacity="0.25"/>
+            <circle cx="150" cy="90" r="5" fill="#1a8aaa" opacity="0.5" stroke="#4ddcff" stroke-width="0.5"/>
+            <ellipse cx="150" cy="193" rx="5" ry="8" fill="#4ddcff" opacity="0.5"/>
+            <ellipse cx="150" cy="198" rx="3" ry="5" fill="#fff" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-ref">REF · ADC-004</div>
+          <h3 class="product-name">COSMOS<br>BLEU</h3>
+          <p class="product-desc">Design rétro-futuriste années 60. Finition bleu cyan nacré, 25cm. Idéal pour bureau.</p>
+          <div class="product-footer">
+            <div class="product-price">79<span> €</span></div>
+            <button class="add-btn" aria-label="Voir le détail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card reveal reveal-delay-1" data-category="premium"
+        data-id="ADC-005" data-name="Lourd Titan III" data-price="189" data-ref="REF · ADC-005"
+        data-desc="Architecture boosters latéraux, 50cm. Finition gris anthracite &amp; accents braise. Pièce maîtresse."
+        data-full-desc="Le Titan III est le modèle le plus imposant de notre collection à 50cm. Son architecture à boosters latéraux en fait une sculpture industrielle à part entière.|La finition gris anthracite mat est contrebalancée par des accents orange braise sur les empennages et les joints de séparation des étages.|Cette pièce maîtresse est taillée pour dominer un espace de réception. Livrée avec un socle en aluminium brossé."
+        data-size="50 cm" data-material="PLA+ Premium" data-finish="Gris anthracite &amp; orange braise"
+        data-images="" 
+        data-3d="https://modelviewer.dev/shared-assets/models/Astronaut.glb">
+        <div class="product-img-wrap">
+          <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="300" height="300" fill="#13161f"/>
+            <line x1="0" y1="150" x2="300" y2="150" stroke="#252a3a" stroke-width="0.5"/>
+            <line x1="150" y1="0" x2="150" y2="300" stroke="#252a3a" stroke-width="0.5"/>
+            <ellipse cx="150" cy="226" rx="48" ry="9" fill="#ff6b2b" opacity="0.12"/>
+            <rect x="142" y="80" width="16" height="110" rx="3" fill="#c8cfe0"/>
+            <rect x="124" y="110" width="12" height="80" rx="3" fill="#6b7394"/>
+            <rect x="164" y="110" width="12" height="80" rx="3" fill="#6b7394"/>
+            <rect x="136" y="125" width="8" height="4" rx="1" fill="#3a4058"/>
+            <rect x="156" y="125" width="8" height="4" rx="1" fill="#3a4058"/>
+            <rect x="136" y="165" width="8" height="4" rx="1" fill="#3a4058"/>
+            <rect x="156" y="165" width="8" height="4" rx="1" fill="#3a4058"/>
+            <path d="M150 55 L155 80 L145 80Z" fill="#e8ecf5"/>
+            <circle cx="150" cy="100" r="4" fill="#0d1018" stroke="#4ddcff" stroke-width="0.75"/>
+            <path d="M142 190 L133 215 L145 206Z" fill="#444"/>
+            <path d="M158 190 L167 215 L155 206Z" fill="#444"/>
+            <ellipse cx="130" cy="193" rx="5" ry="3" fill="#252a3a"/>
+            <ellipse cx="170" cy="193" rx="5" ry="3" fill="#252a3a"/>
+            <ellipse cx="150" cy="193" rx="7" ry="3.5" fill="#252a3a"/>
+            <rect x="142" y="135" width="16" height="2.5" fill="#ff6b2b" opacity="0.7"/>
+            <ellipse cx="130" cy="200" rx="4" ry="6" fill="#ff6b2b" opacity="0.8"/>
+            <ellipse cx="150" cy="200" rx="5" ry="8" fill="#ff6b2b" opacity="0.8"/>
+            <ellipse cx="170" cy="200" rx="4" ry="6" fill="#ff6b2b" opacity="0.8"/>
+            <ellipse cx="150" cy="205" rx="3" ry="5" fill="#ffd700" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-ref">REF · ADC-005</div>
+          <h3 class="product-name">LOURD<br>TITAN III</h3>
+          <p class="product-desc">Architecture boosters latéraux, 50cm. Finition gris anthracite &amp; accents braise. Pièce maîtresse.</p>
+          <div class="product-footer">
+            <div class="product-price">189<span> €</span></div>
+            <button class="add-btn" aria-label="Voir le détail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card reveal reveal-delay-2" data-category="edition"
+        data-id="ADC-006" data-name="Stealth Noir Mat" data-price="259" data-ref="REF · ADC-006 · N°12/30"
+        data-desc="Édition collector, finition carbone noir mat. 38cm. Silhouette épurée, lignes cyan électriques."
+        data-full-desc="Le Stealth Noir Mat est notre pièce la plus iconique. Sa silhouette tranchante aux ailettes delta-wing est habillée d'une finition carbone noir mat ultra-premium.|Les lignes cyan électriques sont peintes au pinceau fin par notre artisan, donnant à chaque pièce un caractère unique et légèrement différent.|Édition limitée à seulement 30 exemplaires, livrée dans un écrin noir satiné avec certificat d'authenticité gravé."
+        data-size="38 cm" data-material="PLA+ Premium" data-finish="Carbone noir mat + cyan"
+        data-images="" 
+        data-3d="https://modelviewer.dev/shared-assets/models/Astronaut.glb">
+        <div class="product-img-wrap">
+          <span class="product-badge limited">Dernières pièces</span>
+          <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="300" height="300" fill="#13161f"/>
+            <line x1="0" y1="150" x2="300" y2="150" stroke="#252a3a" stroke-width="0.5"/>
+            <line x1="150" y1="0" x2="150" y2="300" stroke="#252a3a" stroke-width="0.5"/>
+            <ellipse cx="150" cy="224" rx="46" ry="8" fill="#888" opacity="0.1"/>
+            <path d="M150 48 C148 65 143 110 140 175 L160 175 C157 110 152 65 150 48Z" fill="#1a1e2b" stroke="#3a4058" stroke-width="0.5"/>
+            <path d="M142 80 L143 175" stroke="#252a3a" stroke-width="0.5"/>
+            <path d="M148 70 L149 175" stroke="#252a3a" stroke-width="0.5"/>
+            <path d="M152 70 L153 175" stroke="#252a3a" stroke-width="0.5"/>
+            <path d="M157 80 L158 175" stroke="#252a3a" stroke-width="0.5"/>
+            <path d="M140 175 L122 215 L143 200Z" fill="#13161f" stroke="#4ddcff" stroke-width="0.5"/>
+            <path d="M160 175 L178 215 L157 200Z" fill="#13161f" stroke="#4ddcff" stroke-width="0.5"/>
+            <ellipse cx="150" cy="178" rx="8" ry="4" fill="#0d1018" stroke="#4ddcff" stroke-width="0.75"/>
+            <rect x="140" y="150" width="20" height="1.5" fill="#4ddcff" opacity="0.8"/>
+            <rect x="141" y="120" width="18" height="1" fill="#4ddcff" opacity="0.5"/>
+            <rect x="142" y="95" width="16" height="1" fill="#4ddcff" opacity="0.3"/>
+            <circle cx="150" cy="85" r="6" fill="#0d1018" stroke="#4ddcff" stroke-width="1"/>
+            <circle cx="150" cy="85" r="3" fill="#4ddcff" opacity="0.4"/>
+            <path d="M150 38 L153 50 L147 50Z" fill="#3a4058"/>
+            <ellipse cx="150" cy="188" rx="4" ry="7" fill="#4ddcff" opacity="0.3"/>
+            <ellipse cx="150" cy="192" rx="2" ry="4" fill="#4ddcff" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="product-body">
+          <div class="product-ref">REF · ADC-006 · N°12/30</div>
+          <h3 class="product-name">STEALTH<br>NOIR MAT</h3>
+          <p class="product-desc">Édition collector, finition carbone noir mat. 38cm. Silhouette épurée, lignes cyan électriques.</p>
+          <div class="product-footer">
+            <div class="product-price">259<span> €</span></div>
+            <button class="add-btn" aria-label="Voir le détail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          </div>
+        </div>
+      </article>
+
+    </div>
   </div>
 </section>
 
 <section class="mif-section">
   <div class="section-wrapper">
     <div class="mif-inner">
-      <div class="mif-visual">
+      <div class="mif-visual reveal">
         <div class="mif-ring">
           <div class="mif-orbit-dot"></div>
           <div style="text-align:center">
@@ -146,7 +392,7 @@
           </div>
         </div>
       </div>
-      <div class="mif-content">
+      <div class="mif-content reveal">
         <span class="section-label">Notre engagement</span>
         <h2 class="mif-title">CONÇU ET FABRIQUÉ<br><em>EN FRANCE</em></h2>
         <p class="mif-text">Chez Aerodeco, le "Made in France" n'est pas un simple label marketing. C'est une philosophie de travail et un engagement envers la qualité. Nos ateliers sont basés en Ile-de-France. Chaque pièce qui sort de nos imprimantes est vérifiée, poncée, peinte et conditionnée à la main par notre équipe.</p>
@@ -164,14 +410,14 @@
 
 <section class="reviews-section" id="avis">
   <div class="section-wrapper">
-    <div class="section-header">
+    <div class="section-header reveal">
       <span class="section-label">Ils ont franchi l'atmosphère</span>
       <h2 class="section-title">AVIS<br>COMMANDANTS</h2>
       <p class="section-desc">L'ingénierie spatiale Aerodeco vue par ceux qui l'ont déjà exposée chez eux.</p>
     </div>
 
     <div class="reviews-grid">
-      <div class="review-card">
+      <div class="review-card reveal reveal-delay-1">
         <div class="review-stars">
           <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -187,7 +433,7 @@
         </div>
       </div>
 
-      <div class="review-card">
+      <div class="review-card reveal reveal-delay-2">
         <div class="review-stars">
           <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -203,7 +449,7 @@
         </div>
       </div>
 
-      <div class="review-card">
+      <div class="review-card reveal reveal-delay-3">
         <div class="review-stars">
           <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -220,21 +466,22 @@
       </div>
     </div>
 
-    <div class="leave-review-wrapper">
+    <div class="leave-review-wrapper reveal">
       <a href="https://forms.gle/TON_LIEN_GOOGLE_FORM_ICI" target="_blank" class="btn-outline">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
         Partager votre expérience
       </a>
       <p style="font-size: 0.7rem; color: var(--subtle); margin-top: 10px;">Vous avez commandé chez nous ? Laissez-nous un avis !</p>
     </div>
+
   </div>
 </section>
 
 <section class="cta-band">
   <div class="section-wrapper">
-    <h2 class="cta-band-title">PRÊT AU DÉCOLLAGE ?</h2>
-    <p class="cta-band-sub">Rejoignez les passionnés de l'espace qui ont déjà leur fusée sur leur bureau.</p>
-    <div style="position:relative;z-index:1">
+    <h2 class="cta-band-title reveal">PRÊT AU DÉCOLLAGE ?</h2>
+    <p class="cta-band-sub reveal">Rejoignez les passionnés de l'espace qui ont déjà leur fusée sur leur bureau.</p>
+    <div style="position:relative;z-index:1" class="reveal">
       <a href="#boutique" class="btn-primary">Explorer la collection</a>
     </div>
   </div>
@@ -256,7 +503,37 @@
           <a href="#" class="social-link" aria-label="YouTube">yt</a>
         </div>
       </div>
+      <div class="footer-col">
+        <h4>Boutique</h4>
+        <ul class="footer-links">
+          <li><a href="#boutique">Toute la collection</a></li>
+          <li><a href="#">Classique</a></li>
+          <li><a href="#">Premium</a></li>
+          <li><a href="#">Éditions limitées</a></li>
+          <li><a href="#">Commandes sur-mesure</a></li>
+        </ul>
       </div>
+      <div class="footer-col">
+        <h4>Informations</h4>
+        <ul class="footer-links">
+          <li><a href="#savoir-faire">Notre savoir-faire</a></li>
+          <li><a href="#avis">Avis Clients</a></li>
+          <li><a href="#">Livraison &amp; retours</a></li>
+          <li><a href="#">Entretien &amp; soins</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:bonjour@aerodeco.fr">bonjour@aerodeco.fr</a></li>
+          <li><a href="#">Formulaire de contact</a></li>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="#">CGV</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
       <p class="footer-legal">© 2025 Aerodeco SAS — Tous droits réservés. N° SIRET : 123 456 789 00010</p>
       <div class="footer-mif">🇫🇷 &nbsp;100% Fabriqué en France</div>
@@ -270,11 +547,13 @@
     
     <div class="modal-img-wrap" id="modal-img-wrap">
       <div id="modal-media-container" style="position: relative; width: 100%; height: 100%;">
-        <div id="image-carousel" class="carousel"></div>
+        <div id="image-carousel" class="carousel">
+          </div>
         <div id="3d-container" style="display: none; width: 100%; height: 100%;">
           <model-viewer id="model-3d" src="" auto-rotate camera-controls ar shadow-intensity="1" style="width: 100%; height: 100%;"></model-viewer>
         </div>
       </div>
+      
       <button id="toggle-3d-btn" class="btn-3d-action">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
         Voir en 3D (Réalité Augmentée)
@@ -312,15 +591,36 @@
 </div>
 
 <div class="cart-overlay-bg" id="cart-overlay"></div>
-<aside class="cart-sidebar" id="cart-sidebar">
-    </aside>
+<aside class="cart-sidebar" id="cart-sidebar" role="complementary" aria-label="Votre panier">
+  <div class="cart-sidebar-hd">
+    <h2 class="cart-sidebar-title">Mon Panier</h2>
+    <button class="cart-close" id="cart-close-btn" aria-label="Fermer le panier">✕</button>
+  </div>
+  <div class="cart-body" id="cart-body">
+    <div class="cart-items-list" id="cart-items-list"></div>
+    <div class="cart-empty-state" id="cart-empty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      <p>Votre panier est vide.</p>
+      <small>Explorez notre flotte pour ajouter vos fusées préférées.</small>
+    </div>
+  </div>
+  <div class="cart-sidebar-ft" id="cart-footer" hidden>
+    <div class="cart-row"><span>Sous-total</span><span id="cart-subtotal">0 €</span></div>
+    <div class="cart-row"><span>Livraison</span><span id="cart-shipping-label">Calculée à la caisse</span></div>
+    <div class="cart-row total"><strong>Total</strong><strong id="cart-total">0 €</strong></div>
+    <button class="btn-primary btn-checkout" id="checkout-btn">🚀 Passer à la caisse</button>
+  </div>
+</aside>
 
-<div class="toast" id="toast" role="alert">
+<div class="toast" id="toast" role="alert" aria-live="assertive">
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
   <span id="toast-message">Action effectuée</span>
 </div>
 
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
 <script src="script.js"></script>
 
 </body>
