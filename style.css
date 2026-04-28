@@ -19,7 +19,8 @@
    13. Toast Notification
    14. Animations & Keyframes
    15. Section Avis Clients
-   16. Responsive (Tablette & Mobile)
+   16. Menu Mobile (Caché sur PC)
+   17. Responsive (Tablette & Mobile)
 ═══════════════════════════════════════════════════════════════ */
 
 
@@ -140,6 +141,16 @@ input, select, textarea { font-family: var(--font-body); }
   box-shadow: 0 8px 24px rgba(77, 220, 255, 0.25);
 }
 .btn-primary:active { transform: translateY(0); }
+
+/* Effet néon pour le bouton d'avis */
+.btn-glow {
+  box-shadow: 0 0 25px rgba(77, 220, 255, 0.4), 0 0 50px rgba(77, 220, 255, 0.1);
+  padding: 16px 32px;
+  font-size: 0.9rem;
+}
+.btn-glow:hover {
+  box-shadow: 0 0 35px rgba(77, 220, 255, 0.6), 0 0 60px rgba(77, 220, 255, 0.2);
+}
 
 /* Bouton secondaire (contour) */
 .btn-outline {
@@ -1148,7 +1159,7 @@ option { background: var(--panel); }
 
 
 /* ─────────────────────────────────────────────────────────────
-   MENU MOBILE (Caché sur ordinateur)
+   16. MENU MOBILE (Caché sur PC)
 ───────────────────────────────────────────────────────────────*/
 .mobile-nav { 
   display: none; /* Cache le menu sur PC */
@@ -1189,4 +1200,64 @@ option { background: var(--panel); }
 }
 .mobile-nav-close:hover { 
   color: var(--cyan); 
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   17. RESPONSIVE (Tablette & Mobile)
+───────────────────────────────────────────────────────────────*/
+@media (max-width: 900px) {
+  #main-header nav { display: none; }
+  .hamburger { display: flex; }
+  
+  /* Correction de la Modale sur Tablette/Mobile */
+  .modal-box { 
+    display: flex !important; 
+    flex-direction: column !important; 
+    max-height: 92vh;
+  }
+  .modal-img-wrap { 
+    width: 100% !important;
+    height: 260px !important;
+    max-height: 260px !important;
+    aspect-ratio: auto !important; 
+    border-radius: 12px 12px 0 0 !important;
+    flex-shrink: 0;
+    background: var(--surface);
+  }
+  .modal-img-wrap svg, .modal-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain !important; 
+    padding: 1rem;
+  }
+  .modal-content { padding: 1.5rem !important; }
+  .selector-container { margin: 15px 0 !important; width: 100%; }
+  .aerodeco-dropdown { width: 100% !important; padding: 12px 15px !important; font-size: 0.9rem !important; }
+  .btn-3d-action { bottom: 10px !important; padding: 8px 16px !important; font-size: 0.8rem !important; }
+
+  .checkout-body { grid-template-columns: 1fr; }
+  .checkout-summary { position: static; }
+  .footer-inner, .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .products-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .mif-inner { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+  .mif-ring { margin: 0 auto; }
+}
+
+@media (max-width: 600px) {
+  #main-header, .section-wrapper { padding: 0 1rem; }
+  .hero { padding: 6rem 1rem 3rem; }
+  .hero-stats { gap: 1.5rem; }
+  .products-grid { grid-template-columns: 1fr; }
+  .modal-actions { flex-direction: column; }
+  .btn-add-to-cart, .btn-modal-add { width: 100%; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-full { grid-column: auto; }
+  .checkout-container { padding: 1rem; }
+  .toast { left: 1rem; right: 1rem; bottom: 1rem; justify-content: center; }
+  .footer-inner, .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .mif-ring { width: 260px; height: 260px; }
+  .reviews-grid { grid-template-columns: 1fr; } 
 }
