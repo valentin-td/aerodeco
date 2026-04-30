@@ -434,4 +434,22 @@ document.addEventListener('DOMContentLoaded', () => {
   // On observe tous les éléments qui ont la classe "reveal"
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+  // ✨ LOGIQUE DE LA FAQ (Accordéon) ✨
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+      const currentItem = button.closest('.faq-item');
+      const isActive = currentItem.classList.contains('active');
+      
+      // On ferme d'abord toutes les questions
+      document.querySelectorAll('.faq-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      // On ouvre la question cliquée (seulement si elle n'était pas déjà ouverte)
+      if (!isActive) {
+        currentItem.classList.add('active');
+      }
+    });
+  });
+
 }); // Fin DOMContentLoaded
