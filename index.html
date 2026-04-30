@@ -7,7 +7,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<!-- L'astuce "?v=3" force l'ordinateur à charger le nouveau design -->
+<link rel="stylesheet" href="style.css?v=3">
+<style>
+  /* SÉCURITÉ ANTI-BUG : Cache de force le menu mobile sur les écrans d'ordinateur */
+  @media (min-width: 901px) {
+    .mobile-nav { display: none !important; }
+  }
+</style>
 </head>
 <body>
 
@@ -417,6 +424,7 @@
     </div>
 
     <div class="reviews-grid">
+      <!-- Avis 1 -->
       <div class="review-card reveal reveal-delay-1">
         <div class="review-stars">
           <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -433,6 +441,7 @@
         </div>
       </div>
 
+      <!-- Avis 2 -->
       <div class="review-card reveal reveal-delay-2">
         <div class="review-stars">
           <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -449,6 +458,7 @@
         </div>
       </div>
 
+      <!-- Avis 3 -->
       <div class="review-card reveal reveal-delay-3">
         <div class="review-stars">
           <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -589,13 +599,12 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contact</h4>
+        <h4>Contact & Légal</h4>
         <ul class="footer-links">
           <li><a href="mailto:bonjour@aerodeco.fr">bonjour@aerodeco.fr</a></li>
-          <li><a href="#">Formulaire de contact</a></li>
-          <li><a href="#">Mentions légales</a></li>
-          <li><a href="#">Politique de confidentialité</a></li>
-          <li><a href="#">CGV</a></li>
+          <li><a href="legales.html#mentions">Mentions légales</a></li>
+          <li><a href="legales.html#confidentialite">Politique de confidentialité</a></li>
+          <li><a href="legales.html#cgv">CGV & Retours</a></li>
         </ul>
       </div>
     </div>
@@ -629,6 +638,7 @@
       <div class="modal-ref" id="modal-ref"></div>
       <h2 class="modal-name" id="modal-product-name"></h2>
       
+      <!-- SÉLECTEUR DE TAILLE -->
       <div class="selector-container">
           <label for="rocket-size" class="selector-label">Choisissez l'envergure :</label>
           <select id="rocket-size" class="aerodeco-dropdown">
