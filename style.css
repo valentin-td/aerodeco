@@ -491,38 +491,35 @@ input, select, textarea { font-family: var(--font-body); }
 /* Grille des produits */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5px;
-  background: var(--rim);
-  border: 1px solid var(--rim);
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem; /* Ajoute un bel espace entre les cartes */
+  background: transparent; /* Enlève le gros fond gris */
+  border: none;
 }
 
 /* Carte produit */
 .product-card {
   background: var(--deep);
+  border: 1px solid var(--rim); /* Bordure propre à chaque carte */
+  border-radius: var(--radius-md); /* Bords arrondis */
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  transition: background 0.3s, transform 0.2s, border-color 0.3s;
   position: relative;
   overflow: hidden;
   text-decoration: none;
   color: inherit;
 }
-.product-card:hover { background: var(--surface); }
 
-/* Effet de bordure luisante au survol */
-.product-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 1px solid var(--cyan);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
-  z-index: 1;
+.product-card:hover { 
+  background: var(--surface); 
+  border-color: rgba(77, 220, 255, 0.4);
+  transform: translateY(-4px); /* Petit effet de soulèvement */
 }
-.product-card:hover::after { opacity: 1; }
+
+/* Effet de bordure luisante au survol (Désactivé) */
+.product-card::after { display: none; }
 
 /* Wrapper de l'image produit */
 .product-img-wrap {
@@ -530,6 +527,7 @@ input, select, textarea { font-family: var(--font-body); }
   overflow: hidden;
   position: relative;
   background: var(--surface);
+  border-bottom: 1px solid var(--rim);
 }
 .product-img-wrap svg,
 .product-img-wrap img {
@@ -566,7 +564,6 @@ input, select, textarea { font-family: var(--font-body); }
   flex: 1;
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--rim);
 }
 .product-ref {
   font-size: 0.65rem;
@@ -840,6 +837,17 @@ footer {
   white-space: nowrap; max-width: 90%; box-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
 .btn-3d-action:hover { background: var(--cyan); color: var(--void); }
+
+/* Flèches du carrousel dans la modale */
+.carousel-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(8,9,13,0.7); color: white; border: 1px solid var(--rim);
+  width: 36px; height: 36px; border-radius: 50%; cursor: pointer;
+  display: none; align-items: center; justify-content: center; z-index: 5; transition: all 0.2s;
+}
+.carousel-arrow:hover { background: var(--cyan); color: var(--void); border-color: var(--cyan); }
+#carousel-prev { left: 10px; }
+#carousel-next { right: 10px; }
 
 .modal-content {
   padding: 2.5rem 2rem;
