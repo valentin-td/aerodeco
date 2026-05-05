@@ -7,8 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<!-- L'astuce "?v=4" force l'ordinateur à charger le nouveau design -->
-<link rel="stylesheet" href="style.css?v=4">
+<!-- L'astuce "?v=5" force l'ordinateur à charger le nouveau design -->
+<link rel="stylesheet" href="style.css?v=5">
 <style>
   /* SÉCURITÉ ANTI-BUG : Cache de force le menu mobile sur les écrans d'ordinateur */
   @media (min-width: 901px) {
@@ -584,6 +584,14 @@
 <div class="toast" id="toast" role="alert" aria-live="assertive">
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
   <span id="toast-message">Action effectuée</span>
+</div>
+
+<!-- LIGHTBOX (Galerie photo plein écran) -->
+<div class="lightbox-overlay" id="lightbox-overlay" role="dialog" aria-modal="true">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Fermer">✕</button>
+  <button class="lightbox-arrow left" id="lightbox-prev" aria-label="Photo précédente">❮</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="Vue agrandie">
+  <button class="lightbox-arrow right" id="lightbox-next" aria-label="Photo suivante">❯</button>
 </div>
 
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
