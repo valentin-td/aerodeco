@@ -812,7 +812,7 @@ footer {
 .modal-close:hover { background: rgba(77,220,255,0.1); color: var(--cyan); border-color: var(--cyan); }
 
 .modal-img-wrap {
-  aspect-ratio: 1;
+  height: 100%; /* La magie est ici : on lui dit de s'étirer jusqu'en bas ! */
   overflow: hidden;
   border-radius: 12px 0 0 12px;
   background: var(--surface);
@@ -826,7 +826,7 @@ footer {
   width: 100%; height: 100%; background: var(--surface); scrollbar-width: none; 
 }
 .carousel::-webkit-scrollbar { display: none; }
-.carousel-img { min-width: 100%; object-fit: cover; scroll-snap-align: start; }
+.carousel-img { min-width: 100%; height: 100%; object-fit: cover; scroll-snap-align: start; } /* Ajout de height: 100% ici aussi */
 
 .btn-3d-action {
   position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%);
