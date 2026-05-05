@@ -1,6 +1,6 @@
 /**
  * ═══════════════════════════════════════════════════════════════
- * AERODECO — script.js (Version Finale avec Carrousel, 3D AR & Tailles)
+ * AERODECO — script.js
  * ═══════════════════════════════════════════════════════════════
  */
 
@@ -8,6 +8,10 @@ let panier = [];
 let currentProduct = null;
 let modalQty = 1;
 let toastTimer = null;
+
+// Nouveautés pour la Lightbox
+let lightboxImages = [];
+let lightboxIndex = 0;
 
 /* ── 1. UTILITAIRES ── */
 function formatPrix(montant) {
@@ -29,20 +33,43 @@ function toggleScrollBody(bloquer) {
   document.body.classList.toggle('no-scroll', bloquer);
 }
 
-/* ── 2. MODALE PRODUIT (AVEC CARROUSEL ET 3D) ── */
+/* ── 2. LIGHTBOX (Plein écran) ── */
+function ouvrirLightbox(index) {
+  const lightbox = document.getElementById('lightbox-overlay');
+  const lightboxImg = document.getElementById('lightbox-img');
+  if (!lightbox || !lightboxImg || lightboxImages.length === 0) return;
+  
+  lightboxIndex = index;
+  lightboxImg.src = lightboxImages[lightboxIndex];
+  lightbox.classList.add('open');
+}
+
+function fermerLightbox() {
+  const lightbox = document.getElementById('lightbox-overlay');
+  if (lightbox) lightbox.classList.remove('open');
+}
+
+function navLightbox(delta) {
+  if (lightboxImages.length === 0) return;
+  lightboxIndex += delta;
+  if (lightboxIndex < 0) lightboxIndex = lightboxImages.length - 1;
+  if (lightboxIndex >= lightboxImages.length) lightboxIndex = 0;
+  document.getElementById('lightbox-img').src = lightboxImages[lightboxIndex];
+}
+
+/* ── 3. MODALE PRODUIT ── */
 function ouvrirModale(card) {
   currentProduct = {
     id       : card.dataset.id,
     name     : card.dataset.name,
     price    : parseFloat(card.dataset.price),
-    basePrice: parseFloat(card.dataset.price), // On sauvegarde le prix de base (50cm)
+    basePrice: parseFloat(card.dataset.price),
     ref      : card.dataset.ref,
     fullDesc : card.dataset.fullDesc,
     size     : card.dataset.size,
     material : card.dataset.material,
     finish   : card.dataset.finish,
     thumbHTML: card.querySelector('.product-img-wrap') ? card.querySelector('.product-img-wrap').innerHTML : '',
-    // Récupération des données pour le carrousel et la 3D
     images   : card.dataset.images ? card.dataset.images.split(',').filter(img => img.trim() !== '') : [],
     model3D  : card.dataset['3d'] || ''
   };
@@ -51,14 +78,12 @@ function ouvrirModale(card) {
   const qtyValue = document.getElementById('qty-value');
   if (qtyValue) qtyValue.textContent = modalQty;
 
-  // ── GESTION DU MÉDIA (CARROUSEL / 3D) ──
   const carousel = document.getElementById('image-carousel');
   const container3D = document.getElementById('3d-container');
   const viewer3D = document.getElementById('model-3d');
   const toggleBtn = document.getElementById('toggle-3d-btn');
 
   if (carousel && container3D && toggleBtn) {
-    // 1. Réinitialisation de l'affichage par défaut (on montre les photos)
     carousel.style.display = 'flex';
     container3D.style.display = 'none';
     toggleBtn.innerHTML = `
@@ -66,28 +91,51 @@ function ouvrirModale(card) {
       Voir en 3D (Réalité Augmentée)
     `;
 
-    // 2. Injection des images dans le carrousel
     if (currentProduct.images.length > 0) {
-      // S'il y a des liens d'images dans data-images
-      carousel.innerHTML = currentProduct.images.map(img => `<img src="${img.trim()}" class="carousel-img" alt="${currentProduct.name}">`).join('');
+      // Configuration de la Lightbox
+      lightboxImages = currentProduct.images.map(img => img.trim());
+      
+      // Création des images avec curseur zoom
+      carousel.innerHTML = lightboxImages.map((img, idx) => 
+        `<img src="${img}" class="carousel-img" alt="${currentProduct.name}" data-idx="${idx}" style="cursor: zoom-in;">`
+      ).join('');
+
+      // Activer les clics pour ouvrir la Lightbox
+      carousel.querySelectorAll('.carousel-img').forEach(imgEl => {
+        imgEl.addEventListener('click', (e) => {
+          ouvrirLightbox(parseInt(e.target.dataset.idx));
+        });
+      });
+
+      // Flèches du petit carrousel dans la modale
+      const btnPrev = document.getElementById('carousel-prev');
+      const btnNext = document.getElementById('carousel-next');
+      if (btnPrev && btnNext) {
+        if (currentProduct.images.length > 1) {
+          btnPrev.style.display = 'flex';
+          btnNext.style.display = 'flex';
+          btnPrev.onclick = () => carousel.scrollBy({ left: -carousel.clientWidth, behavior: 'smooth' });
+          btnNext.onclick = () => carousel.scrollBy({ left: carousel.clientWidth, behavior: 'smooth' });
+        } else {
+          btnPrev.style.display = 'none';
+          btnNext.style.display = 'none';
+        }
+      }
     } else {
-      // Fallback : s'il n'y a pas d'image, on affiche le SVG de la carte
       const cleanSVG = currentProduct.thumbHTML.replace(/<span[^>]*product-badge[^>]*>.*?<\/span>/gi, '');
       carousel.innerHTML = `<div class="carousel-img" style="display:flex; align-items:center; justify-content:center; width:100%; height:100%;">${cleanSVG}</div>`;
+      lightboxImages = [];
     }
 
-    // 3. Logique du bouton 3D
     if (currentProduct.model3D) {
-      toggleBtn.style.display = 'flex'; // On montre le bouton
+      toggleBtn.style.display = 'flex';
       toggleBtn.onclick = () => {
         if (container3D.style.display === 'none') {
-          // On bascule en mode 3D
           carousel.style.display = 'none';
           container3D.style.display = 'block';
-          if (viewer3D) viewer3D.src = currentProduct.model3D; // Charge le fichier 3D
+          if (viewer3D) viewer3D.src = currentProduct.model3D;
           toggleBtn.innerHTML = 'Retour aux photos';
         } else {
-          // On revient aux photos
           carousel.style.display = 'flex';
           container3D.style.display = 'none';
           toggleBtn.innerHTML = `
@@ -97,63 +145,46 @@ function ouvrirModale(card) {
         }
       };
     } else {
-      // Si la fusée n'a pas de fichier 3D, on cache le bouton
       toggleBtn.style.display = 'none';
     }
   }
 
-  // ── MISE A JOUR DES TEXTES ──
   const modalRef = document.getElementById('modal-ref');
   const modalName = document.getElementById('modal-product-name');
   const modalPrice = document.getElementById('modal-price');
   const modalDesc = document.getElementById('modal-desc');
   const modalSpecs = document.getElementById('modal-specs');
-  
-  // NOUVEAU : Récupération du sélecteur de taille
   const sizeSelector = document.getElementById('rocket-size');
 
   if (modalRef) modalRef.textContent = currentProduct.ref;
   if (modalName) modalName.textContent = currentProduct.name;
   
-  // Affichage du prix initial sans le formateur (juste le chiffre + €)
   if (modalPrice) {
       modalPrice.innerHTML = `<span id="dynamic-price">${currentProduct.price}</span><span> €</span>`;
   }
 
-  // ── NOUVEAU : GESTION DU SÉLECTEUR DE TAILLE (Prix Dynamique) ──
   if (sizeSelector && modalPrice) {
-      // On s'assure que le menu déroulant affiche toujours le prix de base à l'ouverture
-      sizeSelector.value = "389"; // Tu peux ajuster cette valeur selon ton prix de base
+      sizeSelector.value = "389"; // Valeur par défaut
       
-      // On retire les anciens écouteurs pour éviter les doublons si on ouvre plusieurs fusées
       const newSizeSelector = sizeSelector.cloneNode(true);
       sizeSelector.parentNode.replaceChild(newSizeSelector, sizeSelector);
       
-      // On écoute le changement de taille
       newSizeSelector.addEventListener('change', function() {
           const newPrice = parseFloat(this.value);
-          
-          // On met à jour l'objet currentProduct en mémoire pour que le panier prenne le bon prix
           currentProduct.price = newPrice;
           
-          // Mise à jour de la taille dans les specs visuellement (optionnel mais sympa)
           const sizeSpecValue = document.querySelector('.modal-specs .modal-spec-item:first-child .modal-spec-value');
           if (newPrice === 189) { currentProduct.size = "25 cm"; if(sizeSpecValue) sizeSpecValue.textContent = "25 cm"; }
           else if (newPrice === 389) { currentProduct.size = "50 cm"; if(sizeSpecValue) sizeSpecValue.textContent = "50 cm"; }
           else if (newPrice === 990) { currentProduct.size = "1 Mètre"; if(sizeSpecValue) sizeSpecValue.textContent = "1 Mètre"; }
 
-          // Animation CSS (fondu)
           modalPrice.style.opacity = 0;
-          
           setTimeout(() => {
-              // Met à jour le texte du prix
               modalPrice.innerHTML = `<span id="dynamic-price">${newPrice}</span><span> €</span>`;
-              // Fait réapparaître le prix
               modalPrice.style.opacity = 1;
-          }, 300); // 300ms correspond au temps de la transition CSS
+          }, 300);
       });
   }
-  // ── FIN DU NOUVEAU BLOC ──
 
   if (modalDesc) {
     const phrases = currentProduct.fullDesc.split('|');
@@ -169,7 +200,6 @@ function ouvrirModale(card) {
     `;
   }
 
-  // ── OUVERTURE DE LA MODALE ──
   const productModal = document.getElementById('product-modal');
   if (productModal) {
     productModal.classList.add('open');
@@ -184,7 +214,7 @@ function fermerModale() {
   currentProduct = null;
 }
 
-/* ── 3. PANIER LOGIQUE ── */
+/* ── 4. PANIER LOGIQUE ── */
 function mettreAJourBadgePanier() {
   const cartBadge = document.getElementById('cart-badge');
   if (!cartBadge) return;
@@ -195,7 +225,6 @@ function mettreAJourBadgePanier() {
 }
 
 function ajouterAuPanier(produit, quantite) {
-  // On utilise l'ID + le Prix pour différencier une fusée de 50cm d'une fusée de 1m dans le panier !
   const cartId = produit.id + '-' + produit.price;
   const existing = panier.find(item => item.cartId === cartId);
   
@@ -203,9 +232,9 @@ function ajouterAuPanier(produit, quantite) {
       existing.qty += quantite;
   } else {
       panier.push({ 
-          cartId: cartId, // Nouvel ID unique
+          cartId: cartId,
           id: produit.id, 
-          name: produit.name + ' (' + produit.size + ')', // On ajoute la taille au nom dans le panier
+          name: produit.name + ' (' + produit.size + ')',
           price: produit.price, 
           qty: quantite, 
           thumbHTML: produit.thumbHTML 
@@ -233,7 +262,7 @@ function changerQuantitePanier(cartId, delta) {
   }
 }
 
-/* ── 4. RENDU PANIER ── */
+/* ── 5. RENDU PANIER ── */
 function rendreListePanier() {
   const cartItemsList = document.getElementById('cart-items-list');
   const cartEmpty = document.getElementById('cart-empty');
@@ -305,7 +334,7 @@ function fermerPanier() {
   toggleScrollBody(false);
 }
 
-/* ── 5. INITIALISATION (SÉCURISÉE) ── */
+/* ── 6. INITIALISATION DES ÉVÉNEMENTS ── */
 document.addEventListener('DOMContentLoaded', () => {
 
   // Clics Boutique
@@ -316,6 +345,19 @@ document.addEventListener('DOMContentLoaded', () => {
       if (card) ouvrirModale(card);
     });
   }
+
+  // Événements Lightbox
+  const lightboxCloseBtn = document.getElementById('lightbox-close');
+  const lightboxPrevBtn = document.getElementById('lightbox-prev');
+  const lightboxNextBtn = document.getElementById('lightbox-next');
+  const lightboxOverlay = document.getElementById('lightbox-overlay');
+
+  if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', fermerLightbox);
+  if (lightboxPrevBtn) lightboxPrevBtn.addEventListener('click', (e) => { e.stopPropagation(); navLightbox(-1); });
+  if (lightboxNextBtn) lightboxNextBtn.addEventListener('click', (e) => { e.stopPropagation(); navLightbox(1); });
+  if (lightboxOverlay) lightboxOverlay.addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox-overlay') fermerLightbox();
+  });
 
   // Contrôles Modale
   const modalCloseBtn = document.getElementById('modal-close-btn');
@@ -352,7 +394,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartItemsList = document.getElementById('cart-items-list');
   if (cartItemsList) {
     cartItemsList.addEventListener('click', (e) => {
-      // On utilise maintenant cartid (ID + Prix) pour gérer les quantités
       const cartId = e.target.dataset.cartid; 
       if (e.target.classList.contains('cart-ctrl') && cartId) {
         changerQuantitePanier(cartId, e.target.dataset.action === 'plus' ? 1 : -1);
@@ -363,6 +404,32 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Menu Mobile
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileNavClose = document.getElementById('mobile-nav-close');
+
+  if (hamburgerBtn && mobileNav) {
+    hamburgerBtn.addEventListener('click', () => {
+      mobileNav.classList.add('open');
+      toggleScrollBody(true);
+    });
+  }
+  
+  if (mobileNavClose && mobileNav) {
+    mobileNavClose.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      toggleScrollBody(false);
+    });
+  }
+
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (mobileNav) mobileNav.classList.remove('open');
+      toggleScrollBody(false);
+    });
+  });
 
   // Redirection Stripe Netlify
   const checkoutBtn = document.getElementById('checkout-btn');
@@ -393,11 +460,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Échap pour fermer
+  // Échap et flèches clavier
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      fermerModale();
-      fermerPanier();
+      const lightbox = document.getElementById('lightbox-overlay');
+      if (lightbox && lightbox.classList.contains('open')) {
+        fermerLightbox();
+      } else {
+        fermerModale();
+        fermerPanier();
+      }
+    }
+    // Navigation clavier pour la lightbox
+    const lightbox = document.getElementById('lightbox-overlay');
+    if (lightbox && lightbox.classList.contains('open')) {
+      if (e.key === 'ArrowLeft') navLightbox(-1);
+      if (e.key === 'ArrowRight') navLightbox(1);
     }
   });
 
@@ -425,13 +503,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('visible'); // Fait apparaître le texte et les fusées
+        entry.target.classList.add('visible'); 
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  // On observe tous les éléments qui ont la classe "reveal"
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   // ✨ LOGIQUE DE LA FAQ (Accordéon) ✨
@@ -440,12 +517,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentItem = button.closest('.faq-item');
       const isActive = currentItem.classList.contains('active');
       
-      // On ferme d'abord toutes les questions
       document.querySelectorAll('.faq-item').forEach(item => {
         item.classList.remove('active');
       });
       
-      // On ouvre la question cliquée (seulement si elle n'était pas déjà ouverte)
       if (!isActive) {
         currentItem.classList.add('active');
       }
