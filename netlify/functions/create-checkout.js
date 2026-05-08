@@ -1,16 +1,23 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // 🛑 TON CATALOGUE SÉCURISÉ
-// C'est ici que tu définis tes prix. Stripe prend toujours les prix en CENTIMES. (ex: 89€ = 8900)
+// C'est ici que tu définis tes prix. Stripe prend toujours les prix en CENTIMES.
 const inventaire = {
-  "ADC-001": { nom: "Ariane Classic", prixCentimes: 5000 },
-  "ADC-002": { nom: "Saturn V Prestige", prixCentimes: 100 },
-  "ADC-003": { nom: "Falcon Gold Edition", prixCentimes: 22900 },
-  "ADC-004": { nom: "Cosmos Bleu", prixCentimes: 7900 },
-  "ADC-005": { nom: "Lourd Titan III", prixCentimes: 18900 },
-  "ADC-006": { nom: "Stealth Noir Mat", prixCentimes: 25900 },
-  "ADC-007": { nom: "Artemis I (1m)", prixCentimes: 45000 },
-  "ADC-008": { nom: "Ensemble Artemis + Pas de Tir", prixCentimes: 65000 }
+  // ARTEMIS (3 tailles)
+  "ADC-001-119": { nom: "Artemis Classic (25 cm)", prixCentimes: 11900 },
+  "ADC-001-129": { nom: "Artemis Classic (50 cm)", prixCentimes: 12900 },
+  "ADC-001-459": { nom: "Artemis Classic (1 Mètre)", prixCentimes: 45900 },
+  
+  // SATURN V (3 tailles)
+  "ADC-002-219": { nom: "Saturn V Prestige (25 cm)", prixCentimes: 21900 },
+  "ADC-002-229": { nom: "Saturn V Prestige (50 cm)", prixCentimes: 22900 },
+  "ADC-002-559": { nom: "Saturn V Prestige (1 Mètre)", prixCentimes: 55900 },
+  
+  // AUTRES FUSÉES (Si elles n'ont qu'une taille pour l'instant)
+  "ADC-003-229": { nom: "Falcon Gold Edition (40 cm)", prixCentimes: 22900 },
+  "ADC-004-79": { nom: "Cosmos Bleu (25 cm)", prixCentimes: 7900 },
+  "ADC-005-189": { nom: "Lourd Titan III (50 cm)", prixCentimes: 18900 },
+  "ADC-006-259": { nom: "Stealth Noir Mat (38 cm)", prixCentimes: 25900 }
 };
 
 exports.handler = async (event) => {
@@ -23,7 +30,14 @@ exports.handler = async (event) => {
     let sousTotal = 0;
 
     const lineItems = panierClient.map(item => {
-      const produitSecurise = inventaire[item.id];
+      // NOUVEAU : On cherche le produit par son ID + son PRIX pour trouver la bonne taille
+      const cleRecherche = `${item.id}-${item.price}`;
+      const produitSecurise = inventaire[cleRecherche];
+
+      if (!produitSecurise) {
+          throw new Error(`Produit ou prix non reconnu : ${cleRecherche}`);
+      }
+
       sousTotal += produitSecurise.prixCentimes * item.qty;
 
       return {
@@ -37,12 +51,12 @@ exports.handler = async (event) => {
     });
 
     // Frais de port : 9.90€ si la commande est inférieure à 150€ (15000 centimes)
-    if (sousTotal < 1500) {
+    if (sousTotal < 15000) { // CORRECTION : 150€ = 15000 centimes (il manquait un zéro avant)
       lineItems.push({
         price_data: {
           currency: 'eur',
           product_data: { name: "Livraison sécurisée" },
-          unit_amount: 90,
+          unit_amount: 990, // CORRECTION : 9.90€ = 990 centimes
         },
         quantity: 1,
       });
