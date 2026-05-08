@@ -7,8 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<!-- L'astuce "?v=5" force l'ordinateur à charger le nouveau design -->
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 <style>
   /* SÉCURITÉ ANTI-BUG : Cache de force le menu mobile sur les écrans d'ordinateur */
   @media (min-width: 901px) {
@@ -137,12 +136,11 @@
     
     <div class="products-grid" id="products-grid">
       
-      <!-- 🚀 FUSÉE 1 : ARTEMIS (VISIBLE) -->
       <article class="product-card reveal" data-category="classique"
-        data-id="ADC-001" data-name="Artemis Classic" data-price="89" data-ref="REF · ADC-001"
-        data-desc="Inspiré du lanceur lunaire. Version 30cm, finition nacre blanc stellaire."
+        data-id="ADC-001" data-name="Artemis Classic" data-price="119" data-prices="119,129,459" data-ref="REF · ADC-001"
+        data-desc="Inspiré du lanceur lunaire. Version 25cm, finition nacre blanc stellaire."
         data-full-desc="Le lanceur Artemis marque le grand retour de l'humanité sur la Lune.|Imprimé en PLA+ haute densité à 0.1mm de résolution, chaque détail est reproduit fidèlement.|La finition nacre blanc stellaire lui confère une élégance intemporelle, parfaite pour un bureau ou une bibliothèque."
-        data-size="30 cm" data-material="PLA+ Premium" data-finish="Nacre blanc stellaire"
+        data-size="25 cm" data-material="PLA+ Premium" data-finish="Nacre blanc stellaire"
         data-images="artemis-1.jpg, artemis-2.jpg, artemis-3.jpg" 
         data-3d="">
         <div class="product-img-wrap">
@@ -152,17 +150,16 @@
         <div class="product-body">
           <div class="product-ref">REF · ADC-001</div>
           <h3 class="product-name">ARTEMIS<br>CLASSIC</h3>
-          <p class="product-desc">Inspiré du lanceur lunaire. Version 30cm, finition nacre blanc stellaire.</p>
+          <p class="product-desc">Inspiré du lanceur lunaire. Version 25cm, finition nacre blanc stellaire.</p>
           <div class="product-footer">
-            <div class="product-price">89<span> €</span></div>
+            <div class="product-price">119<span> €</span></div>
             <button class="add-btn" aria-label="Voir le détail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
           </div>
         </div>
       </article>
 
-      <!-- 🚀 FUSÉE 2 : SATURN V (VISIBLE) -->
       <article class="product-card reveal reveal-delay-1" data-category="premium"
-        data-id="ADC-002" data-name="Saturn V Prestige" data-price="149" data-ref="REF · ADC-002"
+        data-id="ADC-002" data-name="Saturn V Prestige" data-price="219" data-prices="219,229,559" data-ref="REF · ADC-002"
         data-desc="La plus grande fusée jamais construite, reproduite en 45cm. Finition bicolore argent &amp; orange."
         data-full-desc="Le Saturn V est la fusée la plus puissante jamais construite par l'humanité.|Ce modèle en 45cm rend hommage à ce géant de l'espace avec une précision obsessionnelle — chaque étage est fidèle à l'original.|La finition bicolore argent métallique et orange brûlé lui confère un caractère saisissant. Idéal comme pièce maîtresse."
         data-size="45 cm" data-material="PLA+ Premium" data-finish="Bicolore argent &amp; orange"
@@ -177,19 +174,12 @@
           <h3 class="product-name">SATURN V<br>PRESTIGE</h3>
           <p class="product-desc">La plus grande fusée jamais construite, reproduite en 45cm. Finition bicolore.</p>
           <div class="product-footer">
-            <div class="product-price">149<span> €</span></div>
+            <div class="product-price">219<span> €</span></div>
             <button class="add-btn" aria-label="Voir le détail"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
           </div>
         </div>
       </article>
 
-      <!-- =========================================================
-           LES FUSÉES CACHÉES (POUR PLUS TARD) 
-           Pour les afficher à nouveau, efface simplement le bout 
-           de code : style="display: none;" sur la balise <article>
-           ========================================================= -->
-
-      <!-- 🚀 FUSÉE 3 (CACHÉE) -->
       <article class="product-card" style="display: none;" data-category="edition"
         data-id="ADC-003" data-name="Falcon Gold Edition" data-price="229" data-ref="REF · ADC-003 · N°47/100"
         data-desc="Édition numérotée et signée. Finition or satiné exclusif, 40cm. Socle acajou inclus."
@@ -211,7 +201,6 @@
         </div>
       </article>
 
-      <!-- 🚀 FUSÉE 4 (CACHÉE) -->
       <article class="product-card" style="display: none;" data-category="classique"
         data-id="ADC-004" data-name="Cosmos Bleu" data-price="79" data-ref="REF · ADC-004"
         data-desc="Design rétro-futuriste années 60. Finition bleu cyan nacré, 25cm. Idéal pour bureau."
@@ -232,7 +221,6 @@
         </div>
       </article>
 
-      <!-- 🚀 FUSÉE 5 (CACHÉE) -->
       <article class="product-card" style="display: none;" data-category="premium"
         data-id="ADC-005" data-name="Lourd Titan III" data-price="189" data-ref="REF · ADC-005"
         data-desc="Architecture boosters latéraux, 50cm. Finition gris anthracite &amp; accents braise. Pièce maîtresse."
@@ -253,7 +241,6 @@
         </div>
       </article>
 
-      <!-- 🚀 FUSÉE 6 (CACHÉE) -->
       <article class="product-card" style="display: none;" data-category="edition"
         data-id="ADC-006" data-name="Stealth Noir Mat" data-price="259" data-ref="REF · ADC-006 · N°12/30"
         data-desc="Édition collector, finition carbone noir mat. 38cm. Silhouette épurée, lignes cyan électriques."
@@ -316,7 +303,6 @@
     </div>
 
     <div class="reviews-grid">
-      <!-- Avis 1 -->
       <div class="review-card reveal reveal-delay-1">
         <div class="review-stars">
           <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -333,7 +319,6 @@
         </div>
       </div>
 
-      <!-- Avis 2 -->
       <div class="review-card reveal reveal-delay-2">
         <div class="review-stars">
           <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -350,7 +335,6 @@
         </div>
       </div>
 
-      <!-- Avis 3 -->
       <div class="review-card reveal reveal-delay-3">
         <div class="review-stars">
           <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -379,7 +363,6 @@
   </div>
 </section>
   
-<!-- ── SECTION FAQ ── -->
 <section class="faq-section" id="faq">
   <div class="section-wrapper">
     <div class="section-header reveal">
@@ -389,7 +372,6 @@
     </div>
 
     <div class="faq-container reveal">
-      <!-- Question 1 -->
       <div class="faq-item">
         <button class="faq-question">
           Combien de temps dure la livraison ?
@@ -402,7 +384,6 @@
         </div>
       </div>
 
-      <!-- Question 2 -->
       <div class="faq-item">
         <button class="faq-question">
           Est-ce que nos fusées sont fragiles ?
@@ -415,7 +396,6 @@
         </div>
       </div>
 
-      <!-- Question 3 -->
       <div class="faq-item">
         <button class="faq-question">
           Peut-on renvoyer le produit ?
@@ -428,7 +408,6 @@
         </div>
       </div>
 
-      <!-- Question 4 -->
       <div class="faq-item">
         <button class="faq-question">
           Les fusées reproduisent-elles fidèlement les vraies ?
@@ -464,20 +443,15 @@
         </a>
         <p class="footer-tagline">L'ingénierie spatiale s'invite chez vous. Modèles de fusées décoratives imprimées en 3D, conçus et fabriqués en France.</p>
         <div class="social-links">
-          <a href="#" class="social-link" aria-label="Instagram">ig</a>
-          <a href="#" class="social-link" aria-label="Pinterest">pt</a>
-          <a href="#" class="social-link" aria-label="LinkedIn">in</a>
-          <a href="#" class="social-link" aria-label="YouTube">yt</a>
+          <a href="https://www.tiktok.com/@aerodnlfpge?is_from_webapp=1&sender_device=pc" target="_blank" class="social-link" aria-label="TikTok Aerodeco">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.22-.71 4.46-2.1 6.18-1.55 1.93-4.04 3.03-6.52 2.9-2.61-.13-5.06-1.57-6.42-3.8-1.37-2.27-1.46-5.14-.35-7.46 1.05-2.25 3.25-3.81 5.75-4.06 1.48-.15 2.98.05 4.31.7v4.06c-.66-.4-1.46-.57-2.24-.53-1.12.06-2.15.7-2.66 1.68-.49.95-.49 2.15-.05 3.12.44.97 1.43 1.66 2.51 1.76 1.05.09 2.14-.19 2.93-.9.76-.68 1.18-1.72 1.18-2.76v-14.7l.03-.01z"/></svg>
+          </a>
         </div>
       </div>
       <div class="footer-col">
         <h4>Boutique</h4>
         <ul class="footer-links">
-          <li><a href="#boutique">Toute la collection</a></li>
-          <li><a href="#">Classique</a></li>
-          <li><a href="#">Premium</a></li>
-          <li><a href="#">Éditions limitées</a></li>
-          <li><a href="#">Commandes sur-mesure</a></li>
+          <li><a href="#boutique">La Flotte</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -485,18 +459,18 @@
         <ul class="footer-links">
           <li><a href="#savoir-faire">Notre savoir-faire</a></li>
           <li><a href="#avis">Avis Clients</a></li>
-          <li><a href="#">Livraison &amp; retours</a></li>
-          <li><a href="#">Entretien &amp; soins</a></li>
-          <li><a href="#">FAQ</a></li>
+          <li><a href="legales.html#cgv">Livraison & retours</a></li>
+          <li><a href="entretien.html">Entretien & soins</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Contact & Légal</h4>
         <ul class="footer-links">
-          <li><a href="mailto:bonjour@aerodeco.fr">bonjour@aerodeco.fr</a></li>
+          <li><a href="mailto:aerodeco.fr@gmail.com">aerodeco.fr@gmail.com</a></li>
           <li><a href="legales.html#mentions">Mentions légales</a></li>
           <li><a href="legales.html#confidentialite">Politique de confidentialité</a></li>
-          <li><a href="legales.html#cgv">CGV & Retours</a></li>
+          <li><a href="legales.html#cgv">CGV</a></li>
         </ul>
       </div>
     </div>
@@ -530,17 +504,13 @@
       <div class="modal-ref" id="modal-ref"></div>
       <h2 class="modal-name" id="modal-product-name"></h2>
       
-      <!-- SÉLECTEUR DE TAILLE -->
       <div class="selector-container">
           <label for="rocket-size" class="selector-label">Choisissez l'envergure :</label>
           <select id="rocket-size" class="aerodeco-dropdown">
-              <option value="189">25 cm — Modèle Bureau</option>
-              <option value="389" selected>50 cm — Édition Collector</option>
-              <option value="990">1 Mètre — Format Monumental</option>
-          </select>
+              </select>
       </div>
       <div class="modal-price" id="modal-price">
-          <span id="dynamic-price">389</span><span> €</span>
+          <span id="dynamic-price"></span><span> €</span>
       </div>
 
       <div class="modal-desc" id="modal-desc"></div>
@@ -586,7 +556,6 @@
   <span id="toast-message">Action effectuée</span>
 </div>
 
-<!-- LIGHTBOX (Galerie photo plein écran) -->
 <div class="lightbox-overlay" id="lightbox-overlay" role="dialog" aria-modal="true">
   <button class="lightbox-close" id="lightbox-close" aria-label="Fermer">✕</button>
   <button class="lightbox-arrow left" id="lightbox-prev" aria-label="Photo précédente">❮</button>

@@ -9,7 +9,6 @@ let currentProduct = null;
 let modalQty = 1;
 let toastTimer = null;
 
-// Nouveautés pour la Lightbox
 let lightboxImages = [];
 let lightboxIndex = 0;
 
@@ -22,7 +21,6 @@ function afficherToast(message, duree = 3000) {
   const toast = document.getElementById('toast');
   const toastMessage = document.getElementById('toast-message');
   if (!toast || !toastMessage) return;
-  
   toastMessage.textContent = message;
   toast.classList.add('show');
   clearTimeout(toastTimer);
@@ -38,7 +36,6 @@ function ouvrirLightbox(index) {
   const lightbox = document.getElementById('lightbox-overlay');
   const lightboxImg = document.getElementById('lightbox-img');
   if (!lightbox || !lightboxImg || lightboxImages.length === 0) return;
-  
   lightboxIndex = index;
   lightboxImg.src = lightboxImages[lightboxIndex];
   lightbox.classList.add('open');
@@ -64,6 +61,7 @@ function ouvrirModale(card) {
     name     : card.dataset.name,
     price    : parseFloat(card.dataset.price),
     basePrice: parseFloat(card.dataset.price),
+    prices   : card.dataset.prices ? card.dataset.prices.split(',') : [card.dataset.price], // Lit les 3 prix
     ref      : card.dataset.ref,
     fullDesc : card.dataset.fullDesc,
     size     : card.dataset.size,
@@ -86,28 +84,20 @@ function ouvrirModale(card) {
   if (carousel && container3D && toggleBtn) {
     carousel.style.display = 'flex';
     container3D.style.display = 'none';
-    toggleBtn.innerHTML = `
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-      Voir en 3D (Réalité Augmentée)
-    `;
+    toggleBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg> Voir en 3D (Réalité Augmentée)`;
 
     if (currentProduct.images.length > 0) {
-      // Configuration de la Lightbox
       lightboxImages = currentProduct.images.map(img => img.trim());
-      
-      // Création des images avec curseur zoom
       carousel.innerHTML = lightboxImages.map((img, idx) => 
         `<img src="${img}" class="carousel-img" alt="${currentProduct.name}" data-idx="${idx}" style="cursor: zoom-in;">`
       ).join('');
 
-      // Activer les clics pour ouvrir la Lightbox
       carousel.querySelectorAll('.carousel-img').forEach(imgEl => {
         imgEl.addEventListener('click', (e) => {
           ouvrirLightbox(parseInt(e.target.dataset.idx));
         });
       });
 
-      // Flèches du petit carrousel dans la modale
       const btnPrev = document.getElementById('carousel-prev');
       const btnNext = document.getElementById('carousel-next');
       if (btnPrev && btnNext) {
@@ -138,10 +128,7 @@ function ouvrirModale(card) {
         } else {
           carousel.style.display = 'flex';
           container3D.style.display = 'none';
-          toggleBtn.innerHTML = `
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-            Voir en 3D (Réalité Augmentée)
-          `;
+          toggleBtn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg> Voir en 3D (Réalité Augmentée)`;
         }
       };
     } else {
@@ -159,12 +146,26 @@ function ouvrirModale(card) {
   if (modalRef) modalRef.textContent = currentProduct.ref;
   if (modalName) modalName.textContent = currentProduct.name;
   
-  if (modalPrice) {
-      modalPrice.innerHTML = `<span id="dynamic-price">${currentProduct.price}</span><span> €</span>`;
-  }
-
+  // GÉNÉRATION DYNAMIQUE DU MENU DÉROULANT DES PRIX
   if (sizeSelector && modalPrice) {
-      sizeSelector.value = "389"; // Valeur par défaut
+      sizeSelector.innerHTML = ''; // On vide l'ancien menu
+      
+      if (currentProduct.prices.length === 3) {
+          // S'il y a bien 3 prix renseignés dans le HTML
+          sizeSelector.innerHTML = `
+              <option value="${currentProduct.prices[0]}">25 cm — Modèle Bureau</option>
+              <option value="${currentProduct.prices[1]}" selected>50 cm — Édition Collector</option>
+              <option value="${currentProduct.prices[2]}">1 Mètre — Format Monumental</option>
+          `;
+          // Par défaut, on sélectionne l'Edition Collector (50cm) au centre
+          currentProduct.price = parseFloat(currentProduct.prices[1]);
+          currentProduct.size = "50 cm";
+      } else {
+          // Secours si tu n'as mis qu'un seul prix
+          sizeSelector.innerHTML = `<option value="${currentProduct.basePrice}" selected>${currentProduct.size}</option>`;
+      }
+
+      modalPrice.innerHTML = `<span id="dynamic-price">${currentProduct.price}</span><span> €</span>`;
       
       const newSizeSelector = sizeSelector.cloneNode(true);
       sizeSelector.parentNode.replaceChild(newSizeSelector, sizeSelector);
@@ -174,9 +175,11 @@ function ouvrirModale(card) {
           currentProduct.price = newPrice;
           
           const sizeSpecValue = document.querySelector('.modal-specs .modal-spec-item:first-child .modal-spec-value');
-          if (newPrice === 189) { currentProduct.size = "25 cm"; if(sizeSpecValue) sizeSpecValue.textContent = "25 cm"; }
-          else if (newPrice === 389) { currentProduct.size = "50 cm"; if(sizeSpecValue) sizeSpecValue.textContent = "50 cm"; }
-          else if (newPrice === 990) { currentProduct.size = "1 Mètre"; if(sizeSpecValue) sizeSpecValue.textContent = "1 Mètre"; }
+          const selectedText = this.options[this.selectedIndex].text;
+          
+          if (selectedText.includes('25 cm')) { currentProduct.size = "25 cm"; if(sizeSpecValue) sizeSpecValue.textContent = "25 cm"; }
+          else if (selectedText.includes('50 cm')) { currentProduct.size = "50 cm"; if(sizeSpecValue) sizeSpecValue.textContent = "50 cm"; }
+          else if (selectedText.includes('1 Mètre')) { currentProduct.size = "1 Mètre"; if(sizeSpecValue) sizeSpecValue.textContent = "1 Mètre"; }
 
           modalPrice.style.opacity = 0;
           setTimeout(() => {
@@ -240,7 +243,6 @@ function ajouterAuPanier(produit, quantite) {
           thumbHTML: produit.thumbHTML 
       });
   }
-  
   mettreAJourBadgePanier();
   afficherToast(`✓ "${produit.name}" ajouté au panier`);
 }
@@ -405,7 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Menu Mobile
+  // ====== MENU MOBILE (HAMBURGER) ======
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const mobileNav = document.getElementById('mobile-nav');
   const mobileNavClose = document.getElementById('mobile-nav-close');
@@ -436,11 +438,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (checkoutBtn) {
     checkoutBtn.addEventListener('click', async () => {
       if (panier.length === 0) return;
-      
       const originalText = checkoutBtn.textContent;
       checkoutBtn.disabled = true;
       checkoutBtn.textContent = '⏳ Sécurisation...';
-
       try {
         const itemsToSend = panier.map(item => ({ id: item.id, qty: item.qty, price: item.price }));
         const response = await fetch('/.netlify/functions/create-checkout', {
@@ -471,7 +471,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fermerPanier();
       }
     }
-    // Navigation clavier pour la lightbox
     const lightbox = document.getElementById('lightbox-overlay');
     if (lightbox && lightbox.classList.contains('open')) {
       if (e.key === 'ArrowLeft') navLightbox(-1);
