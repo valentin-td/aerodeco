@@ -30,7 +30,7 @@ exports.handler = async (event) => {
     let sousTotal = 0;
 
     const lineItems = panierClient.map(item => {
-      // NOUVEAU : On cherche le produit par son ID + son PRIX pour trouver la bonne taille
+      // On cherche le produit par son ID + son PRIX pour trouver la bonne taille
       const cleRecherche = `${item.id}-${item.price}`;
       const produitSecurise = inventaire[cleRecherche];
 
@@ -51,12 +51,12 @@ exports.handler = async (event) => {
     });
 
     // Frais de port : 9.90€ si la commande est inférieure à 150€ (15000 centimes)
-    if (sousTotal < 15000) { // CORRECTION : 150€ = 15000 centimes (il manquait un zéro avant)
+    if (sousTotal < 15000) {
       lineItems.push({
         price_data: {
           currency: 'eur',
           product_data: { name: "Livraison sécurisée" },
-          unit_amount: 990, // CORRECTION : 9.90€ = 990 centimes
+          unit_amount: 990,
         },
         quantity: 1,
       });
@@ -67,10 +67,11 @@ exports.handler = async (event) => {
       shipping_address_collection: { allowed_countries: ['FR', 'BE', 'CH', 'LU'] },
       line_items: lineItems,
       mode: 'payment',
-      allow_promotion_codes: true, // 👈 LA LIGNE MAGIQUE EST ICI
-      // 👇 REMPLACE LES URLS CI-DESSOUS PAR TON LIEN NETLIFY EXACT
-      success_url: 'https://keen-licorice-f3a3f7.netlify.app/?success=true',
-      cancel_url: 'https://keen-licorice-f3a3f7.netlify.app/',
+      allow_promotion_codes: true, // Permet l'utilisation de codes promos dans la caisse
+      
+      // UR_LS MISES À JOUR AVEC TON NOM DE DOMAINE :
+      success_url: 'https://aerodeco.fr/?success=true',
+      cancel_url: 'https://aerodeco.fr/',
     });
 
     return {
